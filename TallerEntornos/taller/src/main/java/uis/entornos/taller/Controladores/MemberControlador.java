@@ -67,3 +67,4 @@ public class MemberControlador {
     return new ResponseEntity<>(member,HttpStatus.OK);
   }
 }
+  
