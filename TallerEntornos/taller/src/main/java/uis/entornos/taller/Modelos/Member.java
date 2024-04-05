@@ -50,12 +50,13 @@ public class Member {
   @JoinColumn(name = "task_id")
   private Task task;
 
-  public Member(int id, String name, String email, String password, Role role) {
+  public Member(int id, String name, String email, String password, Role role, Task task) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
     this.role = role;
+    this.task = task;
   }
 
   public Member() {
