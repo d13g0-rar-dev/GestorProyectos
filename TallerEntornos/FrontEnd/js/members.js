@@ -1,5 +1,5 @@
 function loadData(){
-  let request = sendRequest("api/memebers/list", "GET", null);
+  let request = sendRequest("api/members/list", "GET", null);
   let table = document.getElementById("members_table");
   table.innerHTML = "";
   request.onload = function(){
@@ -9,14 +9,14 @@ function loadData(){
       table.innerHTML += `
                 <tr>
                     <th>${element.documento}</th>
-                    <td>${element.nombres}  ${element.apellidos}</td>
+                    <td>${element.nombre}  ${element.apellido}</td>
                     <td>${element.email}</td>
                     <td>${element.telefono}</td>
                     <td>${element.role}</td>
                     <td>${element.task}</td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
-                        "form_clientes.html?idcliente=${element.idcliente}"'>Ver</button>
+                        "form_member.html?idMember=${element.idMember}"'>Ver</button>
                     </td>
                 </tr>
 
@@ -115,7 +115,7 @@ function registerMember(){
 }
 
 function deleteMember(idMember){
-  let id = document.getElementById("member_id").value;
+  let idMember = document.getElementById("member_id").value;
   let request = sendRequest("api/members/delete/" + id, "DELETE", null);
   request.onload = function(){
     window.location = "members.html";
