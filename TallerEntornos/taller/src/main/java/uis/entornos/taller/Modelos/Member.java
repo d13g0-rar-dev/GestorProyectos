@@ -30,11 +30,6 @@ public class Member {
 
   @Getter
   @Setter
-  @Column(name = "lastname")
-  private String lastname;
-
-  @Getter
-  @Setter
   @Column(name = "birthdate")
   private String birthdate;
 
@@ -55,6 +50,16 @@ public class Member {
 
   @Getter
   @Setter
+  @Column(name = "tipo_documento")
+  private String tipo_documento;
+
+  @Getter
+  @Setter
+  @Column(name = "documento")
+  private String documento;
+
+  @Getter
+  @Setter
   @ManyToOne
   @JoinColumn(name = "role_id")
   private Role role;
@@ -65,10 +70,9 @@ public class Member {
   @JoinColumn(name = "task_id")
   private Task task;
 
-  public Member(int id, String name,String lastname, String email, String password,String birthdate, String telefono ,Role role, Task task) {
+  public Member(int id, String name, String email, String password,String birthdate, String telefono ,Role role, Task task) {
     this.id = id;
     this.name = name;
-    this.lastname = lastname;
     this.email = email;
     this.password = password;
     this.birthdate = birthdate;
