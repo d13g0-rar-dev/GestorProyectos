@@ -1,6 +1,6 @@
 function loadData(){
-  let request = sendRequest("api/tasks/list", "GET", null);
-  let table = document.getElementById("tasks_table");
+  let request = sendRequest("api/roles/list", "GET", null);
+  let table = document.getElementById("roles_table");
   table.innerHTML = "";
   request.onload = function(){
     let data = request.response;
@@ -10,10 +10,10 @@ function loadData(){
                 <tr>
                     <th>${element.id}</th>
                     <td>${element.name}</td>
-                    <td>${element.description}</td>
+                    <td>${element.description}
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
-                        "form_tasks.html?idtask=${element.id}"'>Ver</button>
+                        "form_roles.html?idrole=${element.idrole}"'>Ver</button>
                     </td>
                 </tr>
                 `
@@ -28,11 +28,11 @@ function loadData(){
   }
 }
 
-function loadTask(idTask){
-  let request = sendRequest("api/tasks/list/" + idTask, "GET", null);
-  let name = document.getElementById("task_name");
-  let description = document.getElementById("task_description");
-  let id = document.getElementById("task_id");
+function loadRole(idRole){
+  let request = sendRequest("api/roles/list/" + idRole, "GET", null);
+  let name = document.getElementById("role_name");
+  let description = document.getElementById("role_description");
+  let id = document.getElementById("role_id");
   request.onload = function(){
     let data = request.response;
     name.value = data.name;
@@ -44,31 +44,31 @@ function loadTask(idTask){
   }
 }
 
-function saveTask(){
-  let id = document.getElementById("task_id").value;
-  let name = document.getElementById("task_name").value;
-  let description = document.getElementById("task_description").value;
+function saveRole(){
+  let id = document.getElementById("role_id").value;
+  let name = document.getElementById("role_name").value;
+  let description = document.getElementById("role_description").value;
   let data = {
     'id': id,
     'name': name,
     'description': description
   };
-  let request = sendRequest("api/tasks/save", "POST", data);
+  let request = sendRequest("api/roles/save", "POST", data);
   request.onload = function(){
-    windows.location = "tasks.html";
+    windows.location = "roles.html";
   }
   request.onerror = function(){
-    alert("Ha ocurrido un error al guardar los datos");
+    name.value = "Ha ocurrido un error al guardar los datos";
   }
 }
 
-function deleteTask(idTask){
-  let idTask = document.getElementById("task_id").value;
-  let request = sendRequest("api/tasks/delete/" + idTask, "DELETE", null);
+function deleteRole(idRole){
+  let idRole = document.getElementById("role_id").value;
+  let request = sendRequest("api/roles/delete/" + idRole, "DELETE", null);
   request.onload = function(){
-    windows.location = "tasks.html";
+    windows.location = "roles.html";
   }
   request.onerror = function(){
-    alert("Ha ocurrido un error al eliminar los datos")
+    alert("Ha ocurrido un error al eliminar el rol");
   }
 }
