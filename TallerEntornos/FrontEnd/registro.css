@@ -1,8 +1,8 @@
 body {
   background-color: #112D4E;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 100px;
+  min-width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,14 +12,14 @@ body {
 #titulo{
     text-align: center;
     font-size: 35px;
-    margin: 10px;
+    margin: 30px;
     color: #DBE2EF;
   }
 
   main.formulario {
     background: #F9F7F7;
     min-width: 320px;
-    min-height: 40vh;
+    min-height: 40px;
     border-radius: 5%;
     padding: 2rem;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
