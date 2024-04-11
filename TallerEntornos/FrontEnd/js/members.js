@@ -1,5 +1,5 @@
 function loadData(){
-  let request = sendRequest("api/memebers/list", "GET", null);
+  let request = sendRequest("api/members/list", "GET", null);
   let table = document.getElementById("members_table");
   table.innerHTML = "";
   request.onload = function(){
