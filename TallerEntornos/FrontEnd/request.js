@@ -8,3 +8,5 @@ function sendRequest(endpoint, method, data){
   request.send(JSON.stringify(data));
   return request;
 }
+
+//let data = fetch("localhost:8080/endpoint").then(response => response.json()).then(data => console.log(data));
