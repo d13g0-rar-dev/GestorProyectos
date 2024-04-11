@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="registro.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/1c47b1910c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Registro de usuario</title>
 </head>
 
-<body>
+<body class="p-3 mb-2 bg-primary text-white">
     <main>
 
-        <legend id="titulo"><b>Registro de</b> Usuario</legend>   
+        <legend id="titulo">Registro de <b>Usuario</b></legend>   
 
         <br>
 
@@ -23,19 +23,31 @@
                 <legend id="afili">Formulario de registro</legend>
                 <br>
                 <br>
-                <input type="text" name="nombre" id="name" placeholder="Nombre">
+                <input type="text" name="nombre" id="member_name" placeholder="Nombre Completo">
                 <span class="icon"><i class="fa fa-user" style="color: #3F72AF;"></i></span>
                 <br>
-                <input type="text" name="ape" id="surname" placeholder="Apellido">
-                <span><i class="fa fa-phone" style="color: #3F72AF;"></i></span>
+                <div class="input_container">
+                    <div class="input_div">
+                        <select name="tipo" id="member_tipo_documento">
+                            <option value="idtipo">Tipo de Documento</option>
+                            <option value="CC">CC</option>
+                            <option value="TI">TI</option>
+                            <option value="CE">CE</option>
+                            <option value="PP">PP</option></select>
+                    </div>
+                    <div class="input_div">
+                      <input type="number" name="numero" id="member_documento" placeholder="Número de Documento">
+                      <span class="icon"><i class="fa-solid fa-id-card" style="color: #3F72AF;"></i></span>
+                    </div>
+                  </div>
                 <br>
-                <input type="email" name="email" id="mail" placeholder="Correo Electrónico">
+                <input type="email" name="email" id="member_email" placeholder="Correo Electrónico">
                 <span><i class="fa fa-envelope" style="color: #3F72AF;"></i></span>
                 <br>
-                <input type="text" name="contra" id="password" placeholder="Contraseña">
-                <span><i class="fa fa-phone" style="color: #3F72AF;"></i></span>
+                <input type="text" name="contra" id="member_password" placeholder="Contraseña">
+                <span><i class="fa-solid fa-lock" style="color: #3F72AF;"></i></span>
                 <br>
-                <input type="text" name="telef" id="phone" placeholder="Número de celular">
+                <input type="text" name="telef" id="member_telefono" placeholder="Número de celular">
                 <span><i class="fa fa-phone" style="color: #3F72AF;"></i></span>
                 <div id="2But"></div> 
             </form>        
