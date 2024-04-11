@@ -30,6 +30,16 @@ public class Member {
 
   @Getter
   @Setter
+  @Column(name = "lastname")
+  private String lastname;
+
+  @Getter
+  @Setter
+  @Column(name = "birthdate")
+  private String birthdate;
+
+  @Getter
+  @Setter
   @Column(name = "email")
   private String email;
 
@@ -37,6 +47,11 @@ public class Member {
   @Setter
   @Column(name = "password")
   private String password;
+
+  @Getter
+  @Setter
+  @Column(name = "telefono")
+  private String telefono;
 
   @Getter
   @Setter
@@ -50,11 +65,14 @@ public class Member {
   @JoinColumn(name = "task_id")
   private Task task;
 
-  public Member(int id, String name, String email, String password, Role role, Task task) {
+  public Member(int id, String name,String lastname, String email, String password,String birthdate, String telefono ,Role role, Task task) {
     this.id = id;
     this.name = name;
+    this.lastname = lastname;
     this.email = email;
     this.password = password;
+    this.birthdate = birthdate;
+    this.telefono = telefono;
     this.role = role;
     this.task = task;
   }
