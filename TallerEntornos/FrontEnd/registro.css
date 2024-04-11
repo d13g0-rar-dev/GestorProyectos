@@ -18,9 +18,9 @@ body {
 
   main.formulario {
     background: #F9F7F7;
-    min-width: 320px;
-    min-height: 40px;
-    border-radius: 5%;
+    width: 500px;
+    height: 350px;
+    border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
   }
