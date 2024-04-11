@@ -48,6 +48,23 @@ body {
   height: 35px;
 }
 
+#formu select{
+  padding-left: 10px;
+  color: #3b3b3b;
+  font-size: 13px;
+  position: relative;
+  background-color: white;
+  display: flex;
+  border-radius: 50px;
+  border-color: rgb(197, 197, 197);
+  border-width: 1px;
+  border-style: solid;
+  align-items: center;
+  margin: auto;
+  width: 95%;
+  height: 35px;
+}
+
 .fa-user{
   float: right;
   position: relative;
@@ -81,6 +98,17 @@ body {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+}
+
+.input_div{
+  display: flex;
+  flex-direction:column;
+}
+
+.input_container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
 #can{
