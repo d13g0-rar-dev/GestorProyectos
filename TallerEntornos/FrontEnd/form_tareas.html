@@ -27,7 +27,7 @@
       </div>
       <div class="divider"></div>
       <div class="row">
-        <form id="form-member" class="mt-4" action="" onsubmit="" method="POST">
+        <form id="form-tareas" class="mt-4" action="" onsubmit="" method="POST">
           <input type="hidden" id="idtask" />
           <div class="mb-3">
             <label for="task_id">Id</label>
@@ -52,10 +52,26 @@
             <label for="task_desc" class="form-label">Descripción</label>
             <textarea type="textarea" class="form-control" id="task_desc" name="task_desc" rows="7"></textarea>
           </div>
+          <div class="mb-3">
+            <label for="task_date" class="form-label">Fecha de Creación</label>
+            <input
+              type="date"
+              class="form-control"
+              id="task_date"
+              name="task_date"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="task_deadline" class="form-label">Fecha de Cierre</label>
+            <input
+              type="date"
+              class="form-control"
+              id="task_deadline"
+              name="task_deadline"
+            />
+          </div>
           <button type="button" class="btn btn-primary" onclick="saveTask()">Guardar</button>
-          <button type="button" class="btn btn-danger" onclick="deleteTask()">
-            Eliminar
-          </button>
+          <button type="button" class="btn btn-danger" onclick="deleteTask()">Eliminar</button>
         </form>
       </div>
     </section>
@@ -69,8 +85,8 @@
     <script>
       window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("task_id") != null)
-          loadMember(urlParams.get("task_id"));
+        if (urlParams.get("idtask") != null)
+          loadTask(urlParams.get("idtask"));
       };
     </script>
   </body>

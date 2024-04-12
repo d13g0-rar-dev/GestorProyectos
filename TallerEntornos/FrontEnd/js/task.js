@@ -1,5 +1,5 @@
 function loadData(){
-  let request = sendRequest("api/tasks/list", "GET", null);
+  let request = sendRequest("api/tasks/list", "GET", '');
   let table = document.getElementById("tasks_table");
   table.innerHTML = "";
   request.onload = function(){
@@ -8,12 +8,13 @@ function loadData(){
     data.forEach((element, index) => {
       table.innerHTML += `
                 <tr>
-                    <th>${element.id}</th>
                     <td>${element.name}</td>
                     <td>${element.description}</td>
+                    <td>${element.date.split("T")[0]}</td>
+                    <td>${element.deadline.split("T")[0]}</td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
-                        "form_tasks.html?idtask=${element.id}"'>Ver</button>
+                        "form_tareas.html?idtask=${element.id}"'>Ver</button>
                     </td>
                 </tr>
                 `
@@ -28,30 +29,38 @@ function loadData(){
   }
 }
 
-function loadTask(idTask){
-  let request = sendRequest("api/tasks/list/" + idTask, "GET", null);
+function loadTask(idtask){
+  let request = sendRequest('api/tasks/list/' + idtask, "GET", '');
   let name = document.getElementById("task_name");
-  let description = document.getElementById("task_description");
-  let id = document.getElementById("task_id");
+  let description = document.getElementById("task_desc");
+  let date = document.getElementById("task_date");
+  let deadline = document.getElementById("task_deadline");
+  let id = document.getElementById("idtask");
   request.onload = function(){
     let data = request.response;
-    name.value = data.name;
-    description.value = data.description;
-    id.value = data.id;
+    id.value = data.id
+    name.value = data.name
+    description.value = data.description
+    date.value = data.date.split("T")[0]
+    deadline.value = data.deadline.split("T")[0]
   }
   request.onerror = function(){
-    name.value = "Ha ocurrido un error al recuperar los datos";
+    alert("Ha ocurrido un error al recuperar los datos");
   }
 }
 
 function saveTask(){
-  let id = document.getElementById("task_id").value;
+  let id = document.getElementById("idtask").value;
   let name = document.getElementById("task_name").value;
   let description = document.getElementById("task_desc").value;
+  let date = document.getElementById("task_date").value;
+  let deadline = document.getElementById("task_deadline").value;
   let data = {
     'id': id,
     'name': name,
-    'description': description
+    'description': description,
+    'date': date,
+    'deadline': deadline
   };
   let request = sendRequest("api/tasks/save", "POST", data);
   request.onload = function(){
@@ -63,8 +72,8 @@ function saveTask(){
 }
 
 function deleteTask(){
-  let id = document.getElementById("task_id").value;
-  let request = sendRequest("api/tasks/delete/" + idTask, "DELETE", null);
+  let idtask = document.getElementById("idtask").value;
+  let request = sendRequest("api/tasks/delete/" + idtask, "DELETE",'');
   request.onload = function(){
     window.location = "tasks.html";
   }

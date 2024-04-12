@@ -30,11 +30,6 @@ public class Member {
 
   @Getter
   @Setter
-  @Column(name = "birthdate")
-  private String birthdate;
-
-  @Getter
-  @Setter
   @Column(name = "email")
   private String email;
 
@@ -70,12 +65,11 @@ public class Member {
   @JoinColumn(name = "task_id")
   private Task task;
 
-  public Member(int id, String name, String email, String password,String birthdate, String telefono ,Role role, Task task) {
+  public Member(int id, String name, String email, String password, String telefono ,Role role, Task task) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
-    this.birthdate = birthdate;
     this.telefono = telefono;
     this.role = role;
     this.task = task;
