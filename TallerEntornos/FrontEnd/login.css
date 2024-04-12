@@ -21,8 +21,8 @@ body {
 
   main.formulario {
     background: #F9F7F7;
-    width: 500px;
-    height: 350px;
+    width: 400px;
+    height: 250px;
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
@@ -134,6 +134,19 @@ body {
   grid-gap: 20px;
 }
 
+#boton{
+  font-family: Calibri, sans-serif;
+  margin-left: 15px;
+  height: 35px;
+  width: 100px;
+  border-radius: 8px;
+  color: #3F72AF;
+  background-color: #DBE2EF;
+  border-style: solid;
+  border-color: #3F72AF;
+  border-width: 1.5px;
+}
+
 #can{
   margin-left: 15px;
   height: 35px;
@@ -156,6 +169,3 @@ body {
   border-width: 1.5px;
   border-style: solid;
 }
-
-  
-
