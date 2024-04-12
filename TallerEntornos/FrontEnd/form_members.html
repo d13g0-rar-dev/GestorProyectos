@@ -21,6 +21,8 @@
     </style>
   </head>
   <body>
+    <br>
+    <br>
     <section class="container">
       <div class="row align-items-center mb-2">
         <span class="fw-bold w-auto">Formulario de Usuarios</span>
@@ -104,6 +106,34 @@
               name="member_telefono"
             />
           </div>
+          <div class="input_container">
+            <div class="input_div mb-3">
+              <label for="rol_id">Roles</label>
+              <select
+                class="form-select"
+                name="rol"
+                id="rol_id"
+              >
+                <option>--Seleciona una opción--</option>
+                <option value="rol1">rol1</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <div class="input_container">
+            <div class="input_div mb-3">
+              <label for="task_id">Tareas</label>
+              <select
+                class="form-select"
+                name="task"
+                id="task_id"
+              >
+                <option>--Seleciona una opción--</option>
+                <option value="tak1">task1</option>
+              </select>
+            </div>
+          </div>
+          <br>
           <button type="button" class="btn btn-primary" onclick="saveMember()">Guardar</button>
           <button type="button" class="btn btn-danger" onclick="deleteMember()">
             Eliminar
