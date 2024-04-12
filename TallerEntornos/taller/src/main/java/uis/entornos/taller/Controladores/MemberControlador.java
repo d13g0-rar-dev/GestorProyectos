@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
+import uis.entornos.taller.Modelos.LoginDto;
 import uis.entornos.taller.Modelos.Member;
 import uis.entornos.taller.Servicios.MemberServicio;
 
@@ -56,5 +58,16 @@ public class MemberControlador {
     return new ResponseEntity<>(member, HttpStatus.INTERNAL_SERVER_ERROR);
    }
     return new ResponseEntity<>(member,HttpStatus.OK);
+  }
+
+  @PostMapping("/loginmember")
+  public int login(@RequestBody LoginDto member){
+    int responseLogin = memberServicio.login(member);
+    return responseLogin;
+  }
+
+  @PostMapping("/login")
+  public ResponseEntity<?> loginMember(@RequestBody LoginDto member){
+    return memberServicio.ingresar(member);
   }
 }

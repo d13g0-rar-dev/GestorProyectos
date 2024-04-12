@@ -9,11 +9,11 @@ function loadData(){
       table.innerHTML += `
                 <tr>
                     <th>${element.documento}</th>
-                    <td>${element.nombre}  ${element.apellido}</td>
+                    <td>${element.name}</td>
                     <td>${element.email}</td>
                     <td>${element.telefono}</td>
-                    <td>${element.role}</td>
-                    <td>${element.task}</td>
+                    <td>${element.role.name}</td>
+                    <td>${element.task.name}</td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
                         "form_member.html?idmember=${element.idmember}"'>Ver</button>

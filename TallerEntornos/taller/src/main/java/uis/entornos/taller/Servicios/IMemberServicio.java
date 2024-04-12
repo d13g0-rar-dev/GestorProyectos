@@ -8,5 +8,4 @@ public interface IMemberServicio {
     public Member getMember(Integer id);
     public Member saveMember(Member member);
     public void deleteMember(Integer id);
-
 }
