@@ -8,7 +8,6 @@ function loadData(){
     data.forEach((element, index) => {
       table.innerHTML += `
                 <tr>
-                    <th>${element.id}</th>
                     <td>${element.name}</td>
                     <td>${element.description}
                     <td>
@@ -31,8 +30,8 @@ function loadData(){
 function loadRole(idrole){
   let request = sendRequest("api/roles/list/" + idrole, "GET", '');
   let name = document.getElementById("role_name");
-  let description = document.getElementById("role_description");
-  let id = document.getElementById("idrole");
+  let description = document.getElementById("role_desc");
+  let id = document.getElementById("idrol");
   request.onload = function(){
     let data = request.response;
     name.value = data.name;
@@ -45,7 +44,7 @@ function loadRole(idrole){
 }
 
 function saveRole(){
-  let id = document.getElementById("idrole").value;
+  let id = document.getElementById("idrol").value;
   let name = document.getElementById("role_name").value;
   let description = document.getElementById("role_desc").value;
   let data = {
@@ -55,7 +54,7 @@ function saveRole(){
   };
   let request = sendRequest("api/roles/save", "POST", data);
   request.onload = function(){
-    windows.location = "roles.html";
+    window.location = "roles.html";
   }
   request.onerror = function(){
     name.value = "Ha ocurrido un error al guardar los datos";
@@ -63,10 +62,10 @@ function saveRole(){
 }
 
 function deleteRole(){
-  let idRole = document.getElementById("idrole").value;
-  let request = sendRequest("api/roles/delete/" + idRole, "DELETE", '');
+  let idrole = document.getElementById("idrol").value;
+  let request = sendRequest("api/roles/delete/" + idrole, "DELETE", '');
   request.onload = function(){
-    windows.location = "roles.html";
+    window.location = "roles.html";
   }
   request.onerror = function(){
     alert("Ha ocurrido un error al eliminar el rol");

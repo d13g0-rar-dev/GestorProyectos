@@ -27,7 +27,7 @@
       </div>
       <div class="divider"></div>
       <div class="row">
-        <form id="form-role" class="mt-4" action="" onsubmit="" method="POST">
+        <form id="form-roles" class="mt-4" action="" onsubmit="" method="POST">
           <input type="hidden" id="idrol"/>
           <div class="mb-3">
             <label for="idrol">Id</label>
@@ -67,10 +67,10 @@
     <script>
       window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("idrol") != null){
-            loadRole(urlParams.get("idrol"));
+        if (urlParams.get("idrole") != null){
+            loadRole(urlParams.get("idrole"));
         }
-        console.log(urlParams.get("idrol"));
+        console.log(urlParams.get("idrole"));
       };
     </script>
   </body>

@@ -85,9 +85,11 @@
     <script>
       window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("idtask") != null)
+        if (urlParams.get("idtask") != null){
           loadTask(urlParams.get("idtask"));
-      };
+      }
+      console.log(urlParams.get("idtask"));
+    };
     </script>
   </body>
 </html>
