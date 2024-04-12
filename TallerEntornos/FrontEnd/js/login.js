@@ -1,13 +1,13 @@
 function validarLogin(){
-    let Correo = document.getElementById('icon_user').value;
-    let contraseña = document.getElementById('icon_pass').value;
+    let Correo = document.getElementById('member_email').value;
+    let contraseña = document.getElementById('member_password').value;
     
     let data = {
         'email': Correo,
-        'passwaord': contraseña
+        'password': contraseña
     };
     
-    let request = sendRequest('api/usuario/loginclient', 'POST', data);
+    let request = sendRequest('api/member/loginmember', 'POST', data);
     
     request.onload = function(){
         let dataResponse = request.response;
