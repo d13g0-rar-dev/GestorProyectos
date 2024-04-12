@@ -1,51 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>WorldWideWorks</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
-              rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
-              crossorigin="anonymous">
-        <style>
-            .divider {
-                height: 1px;
-                background-color: rgba(0, 0, 0, .15);
-            }
-            .text-justify {
-                text-align: justify;
-            }
-        </style>
-    </head>
-    <body>
-        <header class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-info">
-                <a href="index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <img src="https://misiontic2022.mintic.gov.co/mt2022/assets/assets/images/logo-mision.png" height="32"/>
-                    <span class="fs-4">Website</span>
+<head>
+    <title>WorldWideWorks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header> <!-- No es necesario usar container-fluid en el header -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <div class="container-fluid"> <!-- Utilizando container-fluid para el contenido de la navbar -->
+                <a href="index.html" class="d-flex align-items-center">
+                    <h3 id="h3" class="text-light ms-3">
+                        <span class="fs-4">WorldWideWorks</span>
+                    </h3>
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a style= "margin-left: 10px; border:none;" class="btn btn-outline-light" href="members.html" 
-                               target="myFrame">Usuarios</a>
+                            <a style="margin-left: 10px; border:none;" class="btn btn-outline-light" href="members.html" target="myFrame">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a style= "margin-left: 10px; border:none;" class="btn btn-outline-light" href="tasks.html" 
-                               target="myFrame">Tareas</a>
+                            <a style="margin-left: 10px; border:none;" class="btn btn-outline-light" href="tasks.html" target="myFrame">Tareas</a>
                         </li>
                         <li class="nav-item">
-                            <a style= "margin-left: 10px; border:none;"  class="btn btn-outline-light" href="roles.html" 
-                               target="myFrame">Roles</a>
+                            <a style="margin-left: 10px; border:none;" class="btn btn-outline-light" href="roles.html" target="myFrame">Roles</a>
                         </li>
                     </ul>
                 </div>
-            </nav>
-            <div class="m-4" style="height: 550px;"> 
-                <iframe name="myFrame" style="height: 100%; width:100%; border: none"></iframe>
             </div>
-        </header>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-        crossorigin="anonymous"></script>
-    </body>
+        </nav>
+        <div class="m-4" style="height: 550px;"> 
+            <iframe name="myFrame" style="height: 100%; width:100%; border: none"></iframe>
+        </div>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
+
