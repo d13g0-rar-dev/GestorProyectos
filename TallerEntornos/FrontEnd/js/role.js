@@ -1,5 +1,5 @@
 function loadData(){
-  let request = sendRequest("api/roles/list", "GET", null);
+  let request = sendRequest("api/roles/list", "GET", '');
   let table = document.getElementById("roles_table");
   table.innerHTML = "";
   request.onload = function(){
@@ -13,7 +13,7 @@ function loadData(){
                     <td>${element.description}
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
-                        "form_roles.html?idrole=${element.idrole}"'>Ver</button>
+                        "form_roles.html?idrole=${element.id}"'>Ver</button>
                     </td>
                 </tr>
                 `
@@ -28,11 +28,11 @@ function loadData(){
   }
 }
 
-function loadRole(idRole){
-  let request = sendRequest("api/roles/list/" + idRole, "GET", null);
+function loadRole(idrole){
+  let request = sendRequest("api/roles/list/" + idrole, "GET", '');
   let name = document.getElementById("role_name");
   let description = document.getElementById("role_description");
-  let id = document.getElementById("role_id");
+  let id = document.getElementById("idrole");
   request.onload = function(){
     let data = request.response;
     name.value = data.name;
@@ -45,9 +45,9 @@ function loadRole(idRole){
 }
 
 function saveRole(){
-  let id = document.getElementById("role_id").value;
+  let id = document.getElementById("idrole").value;
   let name = document.getElementById("role_name").value;
-  let description = document.getElementById("role_description").value;
+  let description = document.getElementById("role_desc").value;
   let data = {
     'id': id,
     'name': name,
@@ -62,9 +62,9 @@ function saveRole(){
   }
 }
 
-function deleteRole(idRole){
-  let idRole = document.getElementById("role_id").value;
-  let request = sendRequest("api/roles/delete/" + idRole, "DELETE", null);
+function deleteRole(){
+  let idRole = document.getElementById("idrole").value;
+  let request = sendRequest("api/roles/delete/" + idRole, "DELETE", '');
   request.onload = function(){
     windows.location = "roles.html";
   }

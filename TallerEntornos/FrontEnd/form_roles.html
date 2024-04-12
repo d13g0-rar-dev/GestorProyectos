@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Creación/Edición Tareas</title>
+    <title>Creación/Edición Roles</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -23,55 +23,37 @@
   <body>
     <section class="container">
       <div class="row align-items-center mb-2">
-        <span class="fw-bold w-auto">Formulario de Tareas</span>
+        <span class="fw-bold w-auto">Formulario de Roles</span>
       </div>
       <div class="divider"></div>
       <div class="row">
-        <form id="form-tareas" class="mt-4" action="" onsubmit="" method="POST">
-          <input type="hidden" id="idtask" />
+        <form id="form-role" class="mt-4" action="" onsubmit="" method="POST">
+          <input type="hidden" id="idrol"/>
           <div class="mb-3">
-            <label for="task_id">Id</label>
+            <label for="idrol">Id</label>
             <input
               type="text"
               class="form-control"
-              id="task_id"
-              name="task_id"
+              id="idrol"
+              name="idrol"
               readonly
             />
           </div>
           <div class="mb-3">
-            <label for="task_name">Nombre Tarea</label>
+            <label for="role_name">Nombre Rol</label>
             <input
               type="text"
               class="form-control"
-              id="task_name"
-              name="task_name"
+              id="role_name"
+              name="role_name"
             />
           </div>
           <div class="mb-3">
-            <label for="task_desc" class="form-label">Descripción</label>
-            <textarea type="textarea" class="form-control" id="task_desc" name="task_desc" rows="7"></textarea>
+            <label for="role_desc" class="form-label">Descripción</label>
+            <textarea type="textarea" class="form-control" id="role_desc" name="role_desc" rows="7"></textarea>
           </div>
-          <div class="mb-3">
-            <label for="task_date" class="form-label">Fecha de Creación</label>
-            <input
-              type="date"
-              class="form-control"
-              id="task_date"
-              name="task_date"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="task_deadline" class="form-label">Fecha de Cierre</label>
-            <input
-              type="date"
-              class="form-control"
-              id="task_deadline"
-              name="task_deadline"
-            />
-          </div>
-          <button type="button" class="btn btn-primary" onclick="saveTask()">Guardar</button>
-          <button type="button" class="btn btn-danger" onclick="deleteTask()">Eliminar</button>
+          <button type="button" class="btn btn-primary" onclick="saveRole()">Guardar</button>
+          <button type="button" class="btn btn-danger" onclick="deleteRole()">Eliminar</button>
         </form>
       </div>
     </section>
@@ -81,12 +63,14 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/request.js"></script>
-    <script src="js/task.js"></script>
+    <script src="js/role.js"></script>
     <script>
       window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("idtask") != null)
-          loadTask(urlParams.get("idtask"));
+        if (urlParams.get("idrol") != null){
+            loadRole(urlParams.get("idrol"));
+        }
+        console.log(urlParams.get("idrol"));
       };
     </script>
   </body>
