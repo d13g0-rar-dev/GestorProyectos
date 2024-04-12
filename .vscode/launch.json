@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TallerApplication<taller>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "uis.entornos.taller.TallerApplication",
+            "projectName": "taller",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
