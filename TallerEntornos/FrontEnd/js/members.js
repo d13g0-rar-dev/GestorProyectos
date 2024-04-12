@@ -16,7 +16,7 @@ function loadData(){
                     <td>${element.task}</td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
-                        "form_member.html?idMember=${element.idMember}"'>Ver</button>
+                        "form_member.html?idmember=${element.idmember}"'>Ver</button>
                     </td>
                 </tr>
 
@@ -114,8 +114,8 @@ function registerMember(){
 
 }
 
-function deleteMember(idMember){
-  let idMember = document.getElementById("member_id").value;
+function deleteMember(){
+  let id = document.getElementById("member_id").value;
   let request = sendRequest("api/members/delete/" + id, "DELETE", null);
   request.onload = function(){
     window.location = "members.html";

@@ -81,7 +81,18 @@
               type="email"
               class="form-control"
               id="member_email"
-              name="member_name"
+              name="member_email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="member_password" class="form-label"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="member_password"
+              name="member_password"
             />
           </div>
           <div class="mb-3">
@@ -93,14 +104,8 @@
               name="member_telefono"
             />
           </div>
-          <button type="button" class="btn btn-primary" onclick="saveMember()">
-            Guardar
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            onclick="deleteMember()"
-          >
+          <button type="button" class="btn btn-primary" onclick="saveMember()">Guardar</button>
+          <button type="button" class="btn btn-danger" onclick="deleteMember()">
             Eliminar
           </button>
         </form>
