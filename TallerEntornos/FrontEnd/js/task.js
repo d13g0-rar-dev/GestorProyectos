@@ -47,7 +47,7 @@ function loadTask(idTask){
 function saveTask(){
   let id = document.getElementById("task_id").value;
   let name = document.getElementById("task_name").value;
-  let description = document.getElementById("task_description").value;
+  let description = document.getElementById("task_desc").value;
   let data = {
     'id': id,
     'name': name,
@@ -55,18 +55,18 @@ function saveTask(){
   };
   let request = sendRequest("api/tasks/save", "POST", data);
   request.onload = function(){
-    windows.location = "tasks.html";
+    window.location = "tasks.html";
   }
   request.onerror = function(){
     alert("Ha ocurrido un error al guardar los datos");
   }
 }
 
-function deleteTask(idTask){
-  let idTask = document.getElementById("task_id").value;
+function deleteTask(){
+  let id = document.getElementById("task_id").value;
   let request = sendRequest("api/tasks/delete/" + idTask, "DELETE", null);
   request.onload = function(){
-    windows.location = "tasks.html";
+    window.location = "tasks.html";
   }
   request.onerror = function(){
     alert("Ha ocurrido un error al eliminar los datos")
