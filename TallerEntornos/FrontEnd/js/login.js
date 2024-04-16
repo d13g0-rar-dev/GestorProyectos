@@ -7,7 +7,7 @@ function validarLogin(){
         'password': contraseña
     };
     
-    let request = sendRequest('api/member/loginmember', 'POST', data);
+    let request = sendRequest('api/members/loginmember', 'POST', data);
     
     request.onload = function(){
         let dataResponse = request.response;
