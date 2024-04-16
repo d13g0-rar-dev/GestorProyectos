@@ -16,7 +16,7 @@ function loadData(){
                     <td>${element.task.name}</td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick='window.location = 
-                        "form_member.html?idmember=${element.idmember}"'>Ver</button>
+                        "form_members.html?idmember=${element.id}"'>Ver</button>
                     </td>
                 </tr>
 
@@ -33,15 +33,15 @@ function loadData(){
 }
 
 function loadMember(idMember){
-  let request = sendRequest("api/members/list/" + idMember, "GET", null);
+  let request = sendRequest("api/members/list/" + idMember, "GET", '');
   let documento = document.getElementById("member_documento");
   let tipo_documento = document.getElementById("member_tipo_documento");
   let name = document.getElementById("member_name");
   let email = document.getElementById("member_email");
   let telefono = document.getElementById("member_telefono");
   let password = document.getElementById("member_password");
-  let role = document.getElementById("member_role");
-  let task = document.getElementById("member_task");
+  let role = document.getElementById("rol_id");
+  let task = document.getElementById("task_id");
   let id = document.getElementById("member_id");
   request.onload = function(){
     let data = request.response;
@@ -51,8 +51,8 @@ function loadMember(idMember){
     email.value = data.email;
     telefono.value = data.telefono;
     password.value = data.password;
-    role.value = data.role;
-    task.value = data.task;
+    role.value = data.role_id;
+    task.value = data.task_id;
     id.value = data.id;   
   }
   request.onerror = function(){
