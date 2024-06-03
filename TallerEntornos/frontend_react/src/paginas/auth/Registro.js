@@ -4,20 +4,20 @@ import APIInvoke from "../../utils/APIInvoke";
 
 
 const Registro = () => {
-  const [Usuario, setUsuario] = useState({
-    idTipoDocumento : '',
-    numeroDocumento : '',
+  const [Member, setUsuario] = useState({
+    tipo_documento : '',
+    documento : '',
     email : '',
-    nombre :'',
+    name :'',
     password : '',
-    nombreUsuario : '',
+    telefono : '',
     confirmar:''
   })
 
-  const {idTipoDocumento,numeroDocumento,email,nombre,password,confirmar,nombreUsuario} = Usuario;
+  const {tipo_documento,documento,email,name, telefono,password,confirmar} = Member;
 
   const onChange = (e) =>{
-    setUsuario({ ...Usuario, [e.target.name]: e.target.value });
+    setUsuario({ ...Member, [e.target.name]: e.target.value });
   }
   
 
@@ -25,14 +25,14 @@ const Registro = () => {
 
   const crearCuenta = async() =>{
     const data = {
-      nombre: Usuario.nombre,
-      idTipoDocumento: Usuario.idTipoDocumento,
-      numeroDocumento: Usuario.numeroDocumento,
-      nombreUsuario: Usuario.nombreUsuario,
-      email: Usuario.email,
-      password: Usuario.password
+      name: Member.name,
+      tipo_documento: Member.tipo_documento,
+      documento: Member.documento,
+      telefono: Member.telefono,
+      email: Member.email,
+      password: Member.password
     }
-    const response = await APIInvoke.invokePOST(`/api/usuarios/`,data);
+    const response = await APIInvoke.invokePOST(`/api/members/save`,data);
     console.log(response);
     setRedirectLogin(true);
   }
@@ -43,7 +43,7 @@ const Registro = () => {
   }
 
   useEffect(() => {
-    document.getElementById("nombre").focus();
+    document.getElementById("name").focus();
   }, [])
   
   if (redirectLogin) {
@@ -67,22 +67,9 @@ const Registro = () => {
                     type="text"
                     className="form-control"
                     placeholder="Nombre completo"
-                    id="nombre"
-                    name="nombre"
-                    value={nombre}
-                    onChange={onChange}
-                    required
-                  />
-                </div>
-
-                <div className="input-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Nombre de Usuario"
-                    id="nombreUsuario"
-                    name="nombreUsuario"
-                    value={nombreUsuario}
+                    id="name"
+                    name="name"
+                    value={name}
                     onChange={onChange}
                     required
                   />
@@ -91,16 +78,16 @@ const Registro = () => {
                 <div className="input-group mb-3">
                   <select
                     className="form-control"
-                    value={idTipoDocumento}
-                    id="idTipoDocumento"
-                    name="idTipoDocumento"
+                    value={tipo_documento}
+                    id="tipo_documento"
+                    name="tipo_documento"
                     onChange={onChange}
                     required
                     >
                     <option value="">Tipo de documento</option>
-                    <option value="5">Cédula</option>
-                    <option value="6">Tarjeta</option>
-                    <option value="7">Pasaporte</option>
+                    <option value="CC">Cédula</option>
+                    <option value="TI">Tarjeta</option>
+                    <option value="PA">Pasaporte</option>
                     </select>
                 </div>
 
@@ -109,9 +96,22 @@ const Registro = () => {
                     type="number"
                     className="form-control"
                     placeholder="Numero de documento"
-                    id="numeroDocumento"
-                    name="numeroDocumento"
-                    value={numeroDocumento}
+                    id="documento"
+                    name="documento"
+                    value={documento}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+
+                <div className="input-group mb-3">
+                  <input
+                    type="number"
+                    className="form-control"
+                    placeholder="Telefono"
+                    id="telefono"
+                    name="telefono"
+                    value={telefono}
                     onChange={onChange}
                     required
                   />
