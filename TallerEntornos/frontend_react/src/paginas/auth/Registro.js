@@ -14,7 +14,7 @@ const Registro = () => {
     confirmar:''
   })
 
-  const {tipo_documento,documento,email,name, telefono,password,confirmar} = Member;
+  const {tipo_documento,documento,email,name,telefono,password,confirmar} = Member;
 
   const onChange = (e) =>{
     setUsuario({ ...Member, [e.target.name]: e.target.value });

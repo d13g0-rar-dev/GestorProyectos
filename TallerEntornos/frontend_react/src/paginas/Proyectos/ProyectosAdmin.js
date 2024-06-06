@@ -22,9 +22,9 @@ const ProyectosAdmin = () => {
 
     const eliminarProyecto = async (e, idProyecto) => {
         e.preventDefault();
-        const response = await APIInvoke.invokeDELETE(`/api/members/${idProyecto}`);
+        const response = await APIInvoke.invokeDELETE(`/api/members/delete/${idProyecto}`);
         console.log(response)
-        if (response.id == idProyecto) {
+        if (response.id === idProyecto) {
             const msg = "El Usuario fue borrado exitosamente"
             swal({
                 title: 'El usuario fue borrado',
@@ -96,7 +96,7 @@ const ProyectosAdmin = () => {
                         <div className="col-12">
                             <div className="card">
                                 <div className="card-header">
-                                    <h3 className="card-title">Responsive Hover Table</h3>
+                                    <h3 className="card-title">Tabla de Usuarios</h3>
                                     <div className="card-tools">
                                         <div className="input-group input-group-sm" style={{ width: 150 }}>
                                             <input type="text" name="table_search" className="form-control float-right" placeholder="Search" />
@@ -116,7 +116,7 @@ const ProyectosAdmin = () => {
                                                 <th >Usuario</th>
                                                 <th>Tipo Documento</th>
                                                 <th>Numero Documento</th>
-                                                <th>Nombre</th>
+                                                <th>Telefono</th>
                                                 <th>Email</th>
                                                 <th>Password</th>
                                                 <th>Opciones</th>
@@ -128,14 +128,14 @@ const ProyectosAdmin = () => {
                                                     item =>
                                                         <tr key={item.id}>
                                                             <td>{item.id}</td>
-                                                            <td>{item.nombreUsuario}</td>
-                                                            <td>{item.idTipoDocumento.tipo}</td>
-                                                            <td>{item.numeroDocumento}</td>
-                                                            <td>{item.nombre}</td>
+                                                            <td>{item.name}</td>
+                                                            <td>{item.tipo_documento}</td>
+                                                            <td>{item.documento}</td>
+                                                            <td>{item.telefono}</td>
                                                             <td>{item.email}</td>
                                                             <td>{item.password}</td>
                                                             <td>
-                                                                <Link to={`/Proyectos-editar/${item.id}@${item.nombreUsuario}@${item.idTipoDocumento.id_tipodocumento}@${item.numeroDocumento}@${item.nombre}@${item.email}@${item.password}`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;&nbsp;
+                                                                <Link to={`/Proyectos-editar/${item.id}@${item.name}@${item.tipo_documento}@${item.documento}@${item.telefono}@`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;&nbsp;
                                                                 <button onClick={(e) => eliminarProyecto(e, item.id)} className='btn btn-sm btn-danger'>Borrar</button>
                                                             </td>
                                                         </tr>

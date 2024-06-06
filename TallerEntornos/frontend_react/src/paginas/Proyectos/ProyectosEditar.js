@@ -19,23 +19,19 @@ const ProyectosEditar = () => {
     const NombreUs = arreglo[1];
     const idTipoDocUs = arreglo[2];
     const NumDocUs = arreglo[3];
-    const nombreCompletoUs = arreglo[4];
-    const emailUs = arreglo[5];
-    const passwordUs = arreglo[6];
+    const telefonoUs = arreglo[4];
 
     const [proyectos, setProyectos] = useState({
-        idTipoDocumento: idTipoDocUs,
-        numeroDocumento: NumDocUs,
-        nombre: nombreCompletoUs,
-        password: passwordUs,
-        nombreUsuario: NombreUs,
-        email: emailUs
+        tipo_documento: idTipoDocUs,
+        documento: NumDocUs,
+        name: NombreUs,
+        telefono: telefonoUs,
     });
 
-    const { idTipoDocumento, numeroDocumento, email, nombre, password, confirmar, nombreUsuario } = proyectos;
+    const { tipo_documento, documento, name,email,telefono, password} = proyectos;
 
     useEffect(() => {
-        document.getElementById("nombre").focus();
+        document.getElementById("name").focus();
     }, [])
 
     const onChange = (e) => {
@@ -50,23 +46,23 @@ const ProyectosEditar = () => {
     }
 
     const editarProyecto = async () => {
-        let arreglo = idproyecto.split('@');
-        const idProyecto = arreglo[0];
 
         const data = {
-            id:idProyecto,
-            idTipoDocumento: proyectos.idTipoDocumento,
-            numeroDocumento: proyectos.numeroDocumento,
-            nombre: proyectos.nombre,
+            id:idUs,
+            tipo_documento: proyectos.tipo_documento,
+            documento: proyectos.documento,
+            name: proyectos.name,
+            email: proyectos.email,
+            telefono: proyectos.telefono,
             password: proyectos.password,
-            nombreUsuario: proyectos.nombreUsuario,
-            email: proyectos.email
         }
 
-        const response = await APIInvoke.invokePUT(`/api/usuarios/`, data);
+        const response = await APIInvoke.invokePUT(`/api/members/update/${idUs}`, data);
         const idProyectoEditado = response.id;
-        console.log(response);
-        if (idProyectoEditado != idProyecto) {
+        console.log("response: ", response);
+        console.log("idProyectoEditado: ", idProyectoEditado);
+        console.log("idUs: ", idUs);
+        if (idProyectoEditado != idUs) {
             const msg = "No fue posible Actualizar el usuario";
             swal({
                 title: 'Actualizacion Fallida',
@@ -119,22 +115,9 @@ const ProyectosEditar = () => {
                                     type="text"
                                     className="form-control"
                                     placeholder="Nombre completo"
-                                    id="nombre"
-                                    name="nombre"
-                                    value={nombre}
-                                    onChange={onChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="input-group mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Nombre de Usuario"
-                                    id="nombreUsuario"
-                                    name="nombreUsuario"
-                                    value={nombreUsuario}
+                                    id="name"
+                                    name="name"
+                                    value={name}
                                     onChange={onChange}
                                     required
                                 />
@@ -143,16 +126,16 @@ const ProyectosEditar = () => {
                             <div className="input-group mb-3">
                                 <select
                                     className="form-control"
-                                    value={idTipoDocumento}
-                                    id="idTipoDocumento"
-                                    name="idTipoDocumento"
+                                    value={tipo_documento}
+                                    id="tipo_documento"
+                                    name="tipo_documento"
                                     onChange={onChange}
                                     required
                                 >
                                     <option value="">Tipo de documento</option>
-                                    <option value="5">Cédula</option>
-                                    <option value="6">Tarjeta</option>
-                                    <option value="7">Pasaporte</option>
+                                    <option value="CC">Cédula</option>
+                                    <option value="TI">Tarjeta</option>
+                                    <option value="PA">Pasaporte</option>
                                 </select>
                             </div>
 
@@ -161,9 +144,22 @@ const ProyectosEditar = () => {
                                     type="number"
                                     className="form-control"
                                     placeholder="Numero de documento"
-                                    id="numeroDocumento"
-                                    name="numeroDocumento"
-                                    value={numeroDocumento}
+                                    id="documento"
+                                    name="documento"
+                                    value={documento}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group mb-3">
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Telefono"
+                                    id="telefono"
+                                    name="telefono"
+                                    value={telefono}
                                     onChange={onChange}
                                     required
                                 />

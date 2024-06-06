@@ -40,6 +40,7 @@ public class MemberControlador {
       memberEditado.setName(member.getName());
       memberEditado.setEmail(member.getEmail());
       memberEditado.setPassword(member.getPassword());
+      memberEditado.setTelefono(member.getTelefono());
       memberEditado.setRole(member.getRole());
       memberEditado.setTask(member.getTask());
       memberServicio.saveMember(memberEditado);
