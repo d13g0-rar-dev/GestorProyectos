@@ -28,7 +28,7 @@ const ProyectosEditar = () => {
         telefono: telefonoUs,
     });
 
-    const { tipo_documento, documento, name,email,telefono, password} = proyectos;
+    const { tipo_documento, documento, name, email, telefono, password} = proyectos;
 
     useEffect(() => {
         document.getElementById("name").focus();
