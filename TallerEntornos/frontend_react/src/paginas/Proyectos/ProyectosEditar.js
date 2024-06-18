@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../../componentes/Navbar';
-import SidebarContainer from '../../componentes/SidebarContainer';
-import ContentHeader from '../../componentes/ContentHeader';
-import Footer from '../../componentes/Footer';
 import APIInvoke from '../../utils/APIInvoke';
 import swal from "sweetalert";
 import { Link } from 'react-router-dom';
@@ -80,7 +76,7 @@ const ProyectosEditar = () => {
             });
         } else {
             navigate('/Proyectos-Admin')
-            const msg = "Usuario Creado";
+            const msg = "Actualizacion Exitosa";
             swal({
                 title: 'OK',
                 text: msg,

@@ -34,8 +34,19 @@ const Home = () => {
                            <Link to={"/Proyectos-Admin"}className="small-box-footer">Ver proyectos <i className="fas fa-arrow-circle-right" /></Link>
                         </div>
                      </div>
+                     <div className="col-lg-3 col-6">
+                        <div className="small-box bg-success">
+                           <div className="inner">
+                              <h3>Tareas</h3>
+                              <p>&nbsp;</p>
+                           </div>
+                           <div className="icon">
+                              <i className="nav-icon fas fa-tasks" />
+                           </div>
+                           <Link to={"/Tareas-Admin"} className="small-box-footer">Ver tareas <i className="fas fa-arrow-circle-right" /></Link>
+                        </div>
+                     </div>
                   </div>
-
                </div>
             </section>
          </div>

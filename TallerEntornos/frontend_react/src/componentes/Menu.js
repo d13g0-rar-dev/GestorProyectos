@@ -21,6 +21,14 @@ const Menu = () => {
             </p>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/Tareas-Admin" className="nav-link">
+            <i className="nav-icon fas fa-tasks" />
+            <p>
+              Tareas
+            </p>
+          </Link>
+        </li>
     </ul>
     </nav>
   );
