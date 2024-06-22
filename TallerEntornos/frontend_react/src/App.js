@@ -22,7 +22,7 @@ function App() {
           <Route path="/Proyectos-Registro" exact element={<ProyectoRegistro/>}/>
           <Route path="/Proyectos-editar/:idproyecto" exact element={<ProyectosEditar/>}/>
           <Route path="/Tareas-Admin" exact element={<TareasAdmin/>}/>
-          <Route path="/Tareas-Editar/:idproyecto" exact element={<TareasEditar/>}/>
+          <Route path="/Tareas-editar/:idtarea" exact element={<TareasEditar/>}/>
         </Routes>
       </Router>
     </Fragment>/* actua como un div */

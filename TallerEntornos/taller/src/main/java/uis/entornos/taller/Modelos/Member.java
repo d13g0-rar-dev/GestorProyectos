@@ -41,7 +41,7 @@ public class Member {
   @Getter
   @Setter
   @Column(name = "telefono")
-  private int telefono;
+  private long telefono;
 
   @Getter
   @Setter
@@ -65,7 +65,7 @@ public class Member {
   @JoinColumn(name = "task_id")
   private Task task;
 
-  public Member(int id, String name, String email, String password, int telefono ,Role role, Task task) {
+  public Member(int id, String name, String email, String password, long telefono ,Role role, Task task) {
     this.id = id;
     this.name = name;
     this.email = email;

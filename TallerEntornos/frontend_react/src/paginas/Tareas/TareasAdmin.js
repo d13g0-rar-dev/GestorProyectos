@@ -72,7 +72,7 @@ const TareasAdmin = () => {
                 Titulo={'Tareas'}
                 breadcrumb1={'Inicio'}
                 breadcrumb2={'Tareas'}
-                ruta={'/Tareas-Admin'}
+                ruta={'/home'}
             />
             <section className="content">
                 <div className='container-fluid'>
@@ -120,6 +120,7 @@ const TareasAdmin = () => {
                                                 <th>Descripción</th>
                                                 <th>Fecha de Creación</th>
                                                 <th>Fecha de Cierre</th>
+                                                <th>Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -133,7 +134,7 @@ const TareasAdmin = () => {
                                                             <td>{item.date}</td>
                                                             <td>{item.deadline}</td>
                                                             <td>
-                                                                <Link to={`/Tareas-Editar/${item.id}@`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;&nbsp;
+                                                                <Link to={`/Tareas-editar/${item.id}@${item.name}@${item.description}@${item.date}@${item.deadline}/`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;&nbsp;
                                                                 <button onClick={(e) => eliminarTarea(e, item.id)} className='btn btn-sm btn-danger'>Borrar</button>
                                                             </td>
                                                         </tr>

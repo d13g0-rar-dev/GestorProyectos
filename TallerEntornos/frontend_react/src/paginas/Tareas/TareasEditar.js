@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import APIInvoke from '../../utils/APIInvoke'
+import React, { useState, useEffect } from 'react';
+import APIInvoke from '../../utils/APIInvoke';
 import swal from "sweetalert";
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,29 +9,21 @@ const TareasEditar = () => {
     const navigate = useNavigate();
 
     const { idtarea } = useParams();
-    let arreglo = idtarea.split('@');
-    const idTareas = arreglo[0];
-    console.log("idTarea: ", idTareas)
+
+    let array = idtarea.split('@');
+    const idTarea = array[0];
+    const nameUs = array[1];
+    const descriptionUs = array[2];
+    const dateUs = array[3];
+    const deadlineUs = array[4];
+    console.log("idTarea: ", idTarea)
 
     const [tareas, setTareas] = useState({
-        id: idTareas,
+        name: nameUs,
+        description: descriptionUs,
+        date: dateUs,
+        deadline: deadlineUs,
     });
-
-    const cargarTarea = async () => {
-        const response = await APIInvoke.invokeGET(`/api/tasks/list/${idTareas}`)
-        for (let i = 0; i < response.length; i++) {
-            response[i].date = response[i].date.split('T')[0];
-            response[i].deadline = response[i].deadline.split('T')[0];
-        }
-        console.log(response);
-        setTareas(response);
-        return response;
-    }
-
-    useEffect(() => {
-        cargarTarea();
-    }, [])
-    
 
     const { name, description, date, deadline } = tareas;
 
@@ -40,6 +32,7 @@ const TareasEditar = () => {
     }, [])
 
     const onChange = (e) => {
+        setTareas(e.target.value);
         setTareas({ ...tareas, [e.target.name]: e.target.value });
     }
 
@@ -51,40 +44,23 @@ const TareasEditar = () => {
     const editarTarea = async () => {
 
         const data = {
-            id: idTareas,
+            id: idTarea,
             name: tareas.name,
             description: tareas.description,
             date: tareas.date,
             deadline: tareas.deadline,
         }
 
-        const response = await APIInvoke.invokePUT(`/api/tasks/update/${idTareas}`, data);
+        const response = await APIInvoke.invokePUT(`/api/tasks/update/${idTarea}`, data);
         const idTareaEditada = response.id;
         console.log("response: ", response);
         console.log("idTareaEditada: ", idTareaEditada);
-        console.log("idTarea: ", idTareas);
+        console.log("idTarea: ", idTarea);
 
-        if (idTareaEditada == idTareas) {
-            const msg = "La tarea fue editada exitosamente"
+        if (idTareaEditada == idTarea) {
+            const msg = "No fue posible Actualizar el usuario";
             swal({
-                title: 'La tarea fue editada',
-                text: msg,
-                icon: 'success',
-                buttons: {
-                    confirm: {
-                        text: 'Ok',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            });
-            navigate('/tareas');
-        } else {
-            const msg = "La tarea no fue editada"
-            swal({
-                title: 'Error',
+                title: 'Actualizacion Fallida',
                 text: msg,
                 icon: 'error',
                 buttons: {
@@ -97,50 +73,103 @@ const TareasEditar = () => {
                     }
                 }
             });
+        } else {
+            navigate('/Tareas-Admin')
+            const msg = "Actualizacion Exitosa";
+            swal({
+                title: 'OK',
+                text: msg,
+                icon: 'success',
+                buttons: {
+                    confirm: {
+                        text: 'Ok',
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-danger',
+                        closeModal: true
+                    }
+                }
+            });
         }
     }
-    return (
-        <div className="wrapper">
-            <div className="content-wrapper">
-                <section className="content">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="card card-primary">
-                                    <div className="card-header">
-                                        <h3 className="card-title">Editar Tarea</h3>
-                                    </div>
-                                    <form onSubmit={onSubmit}>
-                                        <div className="card-body">
-                                            <div className="form-group">
-                                                <label htmlFor="name">Nombre</label>
-                                                <input type="text" className="form-control" id="name" name="name" value={name} onChange={onChange} />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="description">Descripcion</label>
-                                                <input type="text" className="form-control" placeholder='Descripcion' id="description" name="description" value={description} onChange={onChange} />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="date">Fecha</label>
-                                                <input type="date" className="form-control" id="date" name="date" value={date} onChange={onChange} />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="deadline">Fecha Limite</label>
-                                                <input type="date" className="form-control" id="deadline" name="deadline" value={deadline} onChange={onChange} />
-                                            </div>
-                                        </div>
-                                        <div className="card-footer">
-                                            <button type="submit" className="btn btn-primary">Editar</button>
-                                            <Link to="/Tareas-Admin" className="btn btn-danger">Cancelar</Link>
-                                        </div>
-                                    </form>
-                                </div>
+    return(
+        <div className="hold-transition register-page">
+            <div className="register-box">
+                <div className="register-logo">
+                    <Link to={"#"}>
+                        <b>Bienvenido</b> Usuario
+                    </Link>
+                </div>
+                <div className="card">
+                    <div className="card-body register-card-body">
+                        <p className="login-box-msg">Editar Tarea</p>
+                        <form onSubmit={onSubmit}>
+                            <div className="input-group mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Nombre Tarea"
+                                    id="name"
+                                    name="name"
+                                    value={name}
+                                    onChange={onChange}
+                                    required
+                                />
                             </div>
-                        </div>
+
+                            <div className="input-group mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Descripcion"
+                                    id="description"
+                                    name="description"
+                                    value={description}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group mb-3">
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    placeholder="Fecha Inicio"
+                                    id="date"
+                                    name="date"
+                                    value={date}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group mb-3">
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    placeholder="Fecha Cierre"
+                                    id="deadline"
+                                    name="deadline"
+                                    value={deadline}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+                            
+                            <div className="social-auth-links text-center">
+                                <button type='submit' className="btn btn-block btn-primary">
+                                    Actualizar
+                                </button>
+                            </div>
+                            <Link to={"/Proyectos-Admin"} className="btn btn-block btn-danger">
+                                Volver
+                            </Link>
+                        </form>
+
                     </div>
-                </section>
+                </div>
             </div>
         </div>
-    )
+    );
 };
 export default TareasEditar;
