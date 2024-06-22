@@ -57,7 +57,7 @@ const TareasEditar = () => {
         console.log("idTareaEditada: ", idTareaEditada);
         console.log("idTarea: ", idTarea);
 
-        if (idTareaEditada == idTarea) {
+        if (idTareaEditada != idTarea) {
             const msg = "No fue posible Actualizar el usuario";
             swal({
                 title: 'Actualizacion Fallida',
@@ -155,7 +155,7 @@ const TareasEditar = () => {
                                     required
                                 />
                             </div>
-                            
+
                             <div className="social-auth-links text-center">
                                 <button type='submit' className="btn btn-block btn-primary">
                                     Actualizar
