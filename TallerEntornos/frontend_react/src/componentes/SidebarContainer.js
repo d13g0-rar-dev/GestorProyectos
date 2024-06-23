@@ -7,6 +7,9 @@ const SidebarContainer = () => {
   const storedData = localStorage.getItem('DatosUsuario');
   console.log(storedData);
 
+  const datosUsuario = JSON.parse(storedData);
+  let nombreUsuario = datosUsuario.name.split(" ")[0];
+
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <div className="brand-link">
@@ -16,7 +19,7 @@ const SidebarContainer = () => {
           className="brand-image img-circle elevation-3"
           style={{ opacity: ".8" }}
         />
-        <span className="brand-text font-weight-light">Hola {storedData}</span>
+        <span className="brand-text font-weight-light">Hola {nombreUsuario}</span>
       </div>
       <div className="sidebar">
         <Menu></Menu>
