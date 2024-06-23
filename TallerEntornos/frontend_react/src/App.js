@@ -9,6 +9,7 @@ import ProyectosEditar from "./paginas/Proyectos/ProyectosEditar";
 import TareasAdmin from "./paginas/Tareas/TareasAdmin";
 import TareasEditar from "./paginas/Tareas/TareasEditar";
 import GrupoCrear from "./paginas/Grupos/GrupoCrear";
+import TareasRegistro from "./paginas/Tareas/TareasRegistro";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/Proyectos-editar/:idproyecto" exact element={<ProyectosEditar/>}/>
           <Route path="/Tareas-Admin" exact element={<TareasAdmin/>}/>
           <Route path="/Tareas-editar/:idtarea" exact element={<TareasEditar/>}/>
+          <Route path="/Tareas-Registro" exact element={<TareasRegistro/>}/>
           <Route path="/Grupos-Crear" exact element={<GrupoCrear/>}/>
         </Routes>
       </Router>

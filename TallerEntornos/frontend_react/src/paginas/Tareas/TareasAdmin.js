@@ -12,10 +12,6 @@ const TareasAdmin = () => {
 
     const cargarTareas = async () => {
         const response = await APIInvoke.invokeGET('/api/tasks/list')
-        for (let i = 0; i < response.length; i++) {
-            response[i].date = response[i].date.split('T')[0];
-            response[i].deadline = response[i].deadline.split('T')[0];
-        }
         console.log(response);
         setTareas(response);
     }
@@ -78,7 +74,7 @@ const TareasAdmin = () => {
                 <div className='container-fluid'>
                     <div className='card'>
                         <div className='card-header'>
-                            <h3 className='card-title'><Link to="/Tarea-Registro" className="btn btn-block btn-primary">Crear tarea</Link></h3>
+                            <h3 className='card-title'><Link to="/Tareas-Registro" className="btn btn-block btn-primary">Crear tarea</Link></h3>
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i className="fas fa-minus" />
@@ -131,10 +127,10 @@ const TareasAdmin = () => {
                                                             <td>{item.id}</td>
                                                             <td>{item.name}</td>
                                                             <td>{item.description}</td>
-                                                            <td>{item.date}</td>
-                                                            <td>{item.deadline}</td>
+                                                            <td>{item.date.split('T')[0]}</td>
+                                                            <td>{item.deadline.split('T')[0]}</td>
                                                             <td>
-                                                                <Link to={`/Tareas-editar/${item.id}@${item.name}@${item.description}@${item.date}@${item.deadline}/`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;&nbsp;
+                                                                <Link to={`/Tareas-editar/${item.id}@${item.name}@${item.description}@${item.date.split('T')[0]}@${item.deadline.split('T')[0]}/`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;&nbsp;
                                                                 <button onClick={(e) => eliminarTarea(e, item.id)} className='btn btn-sm btn-danger'>Borrar</button>
                                                             </td>
                                                         </tr>

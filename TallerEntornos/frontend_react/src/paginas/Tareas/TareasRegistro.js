@@ -1,97 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react'
+import { useState, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import APIInvoke from '../../utils/APIInvoke';
-import swal from "sweetalert";
-import { Link } from 'react-router-dom';
-import { useNavigate, useParams } from 'react-router-dom';
 
-const TareasEditar = () => {
+const TareasRegistro = () => {
+    const [Tarea, setTarea] = useState({
+        name : '',
+        description : '',
+        date : '',
+        deadline : '',
+    })
 
-    const navigate = useNavigate();
+    const {name,description,date,deadline} = Tarea;
 
-    const { idtarea } = useParams();
+    const onChange = (e) =>{
+        setTarea(e.target.value);
 
-    let array = idtarea.split('@');
-    const idTarea = array[0];
-    const nameUs = array[1];
-    const descriptionUs = array[2];
-    const dateUs = array[3];
-    const deadlineUs = array[4];
-    console.log("idTarea: ", idTarea)
+        setTarea({ ...Tarea, [e.target.name]:e.target.value});
+    }   
 
-    const [tareas, setTareas] = useState({
-        name: nameUs,
-        description: descriptionUs,
-        date: dateUs,
-        deadline: deadlineUs,
-    });
+    const [redirectLogin, setRedirectLogin] = useState(false); // Nuevo estado para la redirección
 
-    const { name, description, date, deadline } = tareas;
+    const crearTarea = async() =>{
+        const data = {
+            name: Tarea.name,
+            description: Tarea.description,
+            date: Tarea.date.split('T')[0],
+            deadline: Tarea.deadline.split('T')[0],
+        }
+        const response = await APIInvoke.invokePOST(`/api/tasks/save`,data);
+        console.log(response);
+        setRedirectLogin(true);
+    }
+
+    const onSubmit = (e) =>{
+        e.preventDefault();
+        crearTarea();
+    }
 
     useEffect(() => {
         document.getElementById("name").focus();
     }, [])
 
-    const onChange = (e) => {
-        setTareas(e.target.value);
-        setTareas({ ...tareas, [e.target.name]: e.target.value });
+    if (redirectLogin) {
+        return <Navigate to="/Tareas-Admin" />;
     }
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        editarTarea();
-    }
-
-    const editarTarea = async () => {
-
-        const data = {
-            id: idTarea,
-            name: tareas.name,
-            description: tareas.description,
-            date: tareas.date,
-            deadline: tareas.deadline,
-        }
-
-        const response = await APIInvoke.invokePUT(`/api/tasks/update/${idTarea}`, data);
-        const idTareaEditada = response.id;
-        console.log("response: ", response);
-        console.log("idTareaEditada: ", idTareaEditada);
-        console.log("idTarea: ", idTarea);
-
-        if (idTareaEditada != idTarea) {
-            const msg = "No fue posible Actualizar el usuario";
-            swal({
-                title: 'Actualizacion Fallida',
-                text: msg,
-                icon: 'error',
-                buttons: {
-                    confirm: {
-                        text: 'Ok',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            });
-        } else {
-            navigate('/Tareas-Admin')
-            const msg = "Actualizacion Exitosa";
-            swal({
-                title: 'OK',
-                text: msg,
-                icon: 'success',
-                buttons: {
-                    confirm: {
-                        text: 'Ok',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            });
-        }
-    }
     return(
         <div className="hold-transition register-page">
             <div className="register-box">
@@ -102,7 +56,7 @@ const TareasEditar = () => {
                 </div>
                 <div className="card">
                     <div className="card-body register-card-body">
-                        <p className="login-box-msg">Editar Tarea</p>
+                        <p className="login-box-msg">Crear Tarea</p>
                         <form onSubmit={onSubmit}>
                             <div className="input-group mb-3">
                                 <input
@@ -118,9 +72,10 @@ const TareasEditar = () => {
                             </div>
 
                             <div className="input-group mb-3">
-                                <input
+                                <textarea
                                     type="text"
                                     className="form-control"
+                                    rows={4}
                                     placeholder="Descripcion"
                                     id="description"
                                     name="description"
@@ -158,7 +113,7 @@ const TareasEditar = () => {
 
                             <div className="social-auth-links text-center">
                                 <button type='submit' className="btn btn-block btn-primary">
-                                    Actualizar
+                                    Crear
                                 </button>
                             </div>
                             <Link to={"/Tareas-Admin"} className="btn btn-block btn-danger">
@@ -171,5 +126,7 @@ const TareasEditar = () => {
             </div>
         </div>
     );
-};
-export default TareasEditar;
+
+}
+
+export default TareasRegistro;

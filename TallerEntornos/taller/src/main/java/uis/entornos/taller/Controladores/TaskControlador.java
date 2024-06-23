@@ -37,6 +37,8 @@ public class TaskControlador {
       taskEditado.setId(task.getId());
       taskEditado.setName(task.getName());
       taskEditado.setDescription(task.getDescription());
+      taskEditado.setDate(task.getDate());
+      taskEditado.setDeadline(task.getDeadline());
       taskServicio.saveTask(taskEditado);
     }else{
       return new ResponseEntity<>(taskEditado, HttpStatus.INTERNAL_SERVER_ERROR);
