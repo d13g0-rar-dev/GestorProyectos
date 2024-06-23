@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Menu = () => {
   return (
@@ -29,7 +31,39 @@ const Menu = () => {
             </p>
           </Link>
         </li>
-    </ul>
+        <li className="nav-item">
+          <Dropdown drop="down">
+            <Dropdown.Toggle className="nav-link" as="a">
+              <i className="nav-icon fas fa-users fa-lg" style={{ fontSize: '24px', marginRight: '8px' }} />
+              <p>Grupos</p>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/Grupos-Crear">
+                Crear un Grupo
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/Unirse-Grupo">
+                Unirse a un Grupo
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </li>
+        <li className="nav-item">
+          <Link to="/Configuracion" className="nav-link">
+            <i className="nav-icon fas fa-cogs fa-lg" style={{ fontSize: '24px', marginRight: '8px' }} />
+            <p>
+              Configuración
+            </p>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            <i className="nav-icon fas fa-power-off fa-lg" style={{ fontSize: '24px', marginRight: '8px' }} />
+            <p>
+              Salir
+            </p>
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };

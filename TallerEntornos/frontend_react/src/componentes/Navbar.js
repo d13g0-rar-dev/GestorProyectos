@@ -10,11 +10,6 @@ const Navbar = () => {
             <i className="fas fa-bars" />
           </Link>
         </li>
-        <li className="nav-item d-none d-sm-inline-block">
-          <a href="/" className="nav-link">
-            Salir
-          </a>
-        </li>
       </ul>
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">

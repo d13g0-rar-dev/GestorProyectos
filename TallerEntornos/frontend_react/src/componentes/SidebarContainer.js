@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Menu from "./Menu";
-import Logo from '../../node_modules/admin-lte/dist/img/AdminLTELogo.png';
+import Logo from '../../node_modules/admin-lte/dist/img/logo proyecto software.png';
 
 const SidebarContainer = () => {
 
@@ -10,7 +9,7 @@ const SidebarContainer = () => {
 
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
-      <Link to={"/home"} className="brand-link">
+      <div className="brand-link">
         <img
           src={Logo}
           alt="AdminLTE Logo"
@@ -18,7 +17,7 @@ const SidebarContainer = () => {
           style={{ opacity: ".8" }}
         />
         <span className="brand-text font-weight-light">Hola {storedData}</span>
-      </Link>
+      </div>
       <div className="sidebar">
         <Menu></Menu>
       </div>

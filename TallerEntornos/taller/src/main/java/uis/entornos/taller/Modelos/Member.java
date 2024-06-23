@@ -51,7 +51,7 @@ public class Member {
   @Getter
   @Setter
   @Column(name = "documento")
-  private String documento;
+  private long documento;
 
   @Getter
   @Setter
@@ -65,14 +65,24 @@ public class Member {
   @JoinColumn(name = "task_id")
   private Task task;
 
-  public Member(int id, String name, String email, String password, long telefono ,Role role, Task task) {
+  @Getter
+  @Setter
+  @ManyToOne
+  @JoinColumn(name = "grupo_id")
+  private Grupo grupo;
+  
+
+  public Member(int id, String name, String email, String password, long documento, String tipo_documento, long telefono ,Role role, Task task, Grupo grupo) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
     this.telefono = telefono;
+    this.documento = documento;
+    this.tipo_documento = tipo_documento;
     this.role = role;
     this.task = task;
+    this.grupo = grupo;
   }
 
   public Member() {
