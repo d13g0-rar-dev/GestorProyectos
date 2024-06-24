@@ -2,7 +2,8 @@ package uis.entornos.taller.Modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "grupo")
@@ -23,15 +24,26 @@ public class Grupo {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Member> members;
+    @Column(name = "description")
+    private String description;
+
+    @Getter
+    @Setter
+    @ManyToMany
+    @JoinTable(
+        name = "grupo_member",
+        joinColumns = @JoinColumn(name = "grupo_id"),
+        inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+    private Set<Member> members = new HashSet<>();
 
     public Grupo() {
     }
 
-    public Grupo(int id, String name, List<Member> members) {
+    public Grupo(int id, String name, String description, Set<Member> members) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.members = members;
     }
 }

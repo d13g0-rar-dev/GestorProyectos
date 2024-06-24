@@ -5,11 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.Set;
+import java.util.HashSet;
 import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 @Table(name = "member")
@@ -67,22 +70,21 @@ public class Member {
 
   @Getter
   @Setter
-  @ManyToOne
-  @JoinColumn(name = "grupo_id")
-  private Grupo grupo;
+  @ManyToMany(mappedBy = "members")
+  private Set<Grupo> grupos = new HashSet<>();
   
 
-  public Member(int id, String name, String email, String password, long documento, String tipo_documento, long telefono ,Role role, Task task, Grupo grupo) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.telefono = telefono;
-    this.documento = documento;
-    this.tipo_documento = tipo_documento;
-    this.role = role;
-    this.task = task;
-    this.grupo = grupo;
+  public Member(int id, String name, String email, String password, long documento, String tipo_documento, long telefono ,Role role, Task task, Set<Grupo> grupos) {
+      this.id = id;
+      this.name = name;
+      this.email = email;
+      this.password = password;
+      this.telefono = telefono;
+      this.documento = documento;
+      this.tipo_documento = tipo_documento;
+      this.role = role;
+      this.task = task;
+      this.grupos = grupos;
   }
 
   public Member() {
