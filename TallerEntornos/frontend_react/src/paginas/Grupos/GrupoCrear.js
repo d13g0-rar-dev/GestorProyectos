@@ -1,6 +1,9 @@
 import { React , useEffect, useState }from "react";
 import { Link, Navigate } from "react-router-dom";
 import APIInvoke from "../../utils/APIInvoke";
+import Navbar from '../../componentes/Navbar';
+import SidebarContainer from '../../componentes/SidebarContainer';
+import ContentHeader from '../../componentes/ContentHeader';
 
 const GrupoCrear = () => {
 
@@ -58,13 +61,18 @@ const GrupoCrear = () => {
     }
 
     return (
-        <div className="hold-transition register-page">
-            <div className="register-box">
-                <div className="register-logo">
-                    <Link to={"#"}>
-                        <b>Bienvenid@ </b> Usuario
-                    </Link>
-                </div>
+      
+        <div className="wrapper">
+        <Navbar></Navbar>
+         <SidebarContainer></SidebarContainer>
+            <div className="content-wrapper">
+                <ContentHeader
+                Titulo={''}
+                breadcrumb1={'Inicio'}
+                breadcrumb2={'Crear Grupo'}
+                ruta={'/home'}
+                />
+                <div className="register-box">
                 <div className="card">
                     <div className="card-body register-card-body">
                         <p className="login-box-msg">Crear Grupo</p>
@@ -108,6 +116,7 @@ const GrupoCrear = () => {
 
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );
