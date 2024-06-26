@@ -10,21 +10,15 @@ const GrupoUnirse = () => {
     const [redirectLogin, setRedirectLogin] = useState(false); // Nuevo estado para la redirección
 
     const unirseGrupo = async () => {
-        const storedMember = localStorage.getItem('usuario');
-        const id = document.getElementById("code").value;
-        console.log("id: ", id);
+        const storedMember = localStorage.getItem("DatosUsuario");
+        const member = JSON.parse(storedMember);
+        const idGrupo = document.getElementById("code").value;
+        console.log("id: ", idGrupo);
         console.log("member: ", storedMember);
+        console.log("member_id: ", member.id);
 
-        const response = await APIInvoke.invokeGET(`/api/grupos/list/${id}`);
-        console.log(response);
-        const data = {
-            id: id,
-            name: response.name,
-            description: response.description,
-            members: [storedMember],
-        };
-        const response2 = await APIInvoke.invokePUT(`/api/grupos/update/${id}`, data);
-        console.log("response: ", response2);
+        const response = await APIInvoke.invokePUT(`/api/grupos/add/${idGrupo}/member`, member.id);
+        console.log("response: ", response);
         setRedirectLogin(true);
     };
 

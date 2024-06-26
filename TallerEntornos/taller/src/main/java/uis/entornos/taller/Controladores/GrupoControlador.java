@@ -48,6 +48,12 @@ public class GrupoControlador {
         }
     }
 
+    @PutMapping("/add/{idGrupo}/member")
+    public ResponseEntity<Grupo> agregarMiembro(@PathVariable Integer idGrupo, @RequestBody Integer memberId){
+        grupoServicio.addMember(idGrupo, memberId);
+        return new ResponseEntity<>(grupoServicio.getGrupo(idGrupo),HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Grupo> eliminarGrupo(@PathVariable Integer id){
         Grupo grupo = grupoServicio.getGrupo(id);

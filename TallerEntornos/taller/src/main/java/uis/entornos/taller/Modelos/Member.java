@@ -61,7 +61,7 @@ public class Member {
 
   @Getter
   @Setter
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Grupo> grupos = new ArrayList<>();
 
 

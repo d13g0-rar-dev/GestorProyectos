@@ -1,8 +1,6 @@
 package uis.entornos.taller.Servicios;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,17 +29,7 @@ public class GrupoServicio implements IGrupoServicio{
     @Override
     @SuppressWarnings("null")
     public Grupo actualizarGrupo(Grupo grupo) {
-        Grupo grupoExistente = grupoRepo.findById(grupo.getId()).orElse(null);
-        grupoExistente.setName(grupo.getName());
-        grupoExistente.setDescription(grupo.getDescription());
-    
-        List<Member> members = new ArrayList<>();
-        for (Member member : grupo.getMembers()) {
-            Member memberExistente = memberRepo.findById(member.getId()).orElse(null);
-            members.add(memberExistente);
-        }
-        grupoExistente.setMembers(members);
-        return grupoRepo.save(grupoExistente);
+        return grupoRepo.save(grupo);
     }
 
     @Override
