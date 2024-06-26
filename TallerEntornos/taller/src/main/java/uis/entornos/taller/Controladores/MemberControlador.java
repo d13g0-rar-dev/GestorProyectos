@@ -43,6 +43,7 @@ public class MemberControlador {
       memberEditado.setTelefono(member.getTelefono());
       memberEditado.setRole(member.getRole());
       memberEditado.setTask(member.getTask());
+      memberEditado.setGrupos(member.getGrupos());
       memberServicio.saveMember(memberEditado);
     }else{
       return new ResponseEntity<>(memberEditado, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -4,6 +4,7 @@ import APIInvoke from "../../utils/APIInvoke";
 import Navbar from '../../componentes/Navbar';
 import SidebarContainer from '../../componentes/SidebarContainer';
 import ContentHeader from '../../componentes/ContentHeader';
+import Footer from "../../componentes/Footer";
 
 const GrupoCrear = () => {
 
@@ -24,14 +25,16 @@ const GrupoCrear = () => {
     const crearGrupo = async () => {
         const storedMember = localStorage.getItem('DatosUsuario');
         const member = JSON.parse(storedMember);
-        const member_id = member.id;
+
+        const code = Math.floor(Math.random() * 1000000);
+
         const data = {
             name: Grupo.name,
             description: Grupo.description,
+            code: code,
             members: [member]
         }
         const response = await APIInvoke.invokePOST(`/api/grupos/save`, data);
-        const grupo_id = response.id;
         console.log(response);
         const data2 = {
             name: member.name,
@@ -40,9 +43,9 @@ const GrupoCrear = () => {
             tipo_documento: member.tipo_documento,
             documento: member.documento,
             telefono: member.telefono,
-            grupo_id: grupo_id
+            grupos: [response.data]
         }
-        const response2 = await APIInvoke.invokePUT(`/api/members/update/${member_id}`, data2);
+        const response2 = await APIInvoke.invokePUT(`/api/members/update/${member.id}`, data2);
         console.log(response2);
         setRedirectLogin(true);
     }
@@ -63,25 +66,24 @@ const GrupoCrear = () => {
     return (
       
         <div className="wrapper">
-        <Navbar></Navbar>
-         <SidebarContainer></SidebarContainer>
-            <div className="content-wrapper">
-                <ContentHeader
-                Titulo={''}
-                breadcrumb1={'Inicio'}
-                breadcrumb2={'Crear Grupo'}
-                ruta={'/home'}
-                />
-                <div className="register-box">
-                <div className="card">
-                    <div className="card-body register-card-body">
-                        <p className="login-box-msg">Crear Grupo</p>
-                        <form onSubmit={onSubmit}>
-                            <div className="input-group mb-3">
+            <Navbar />
+            <SidebarContainer />
+            <ContentHeader
+                        Titulo={''}
+                        breadcrumb1={'Inicio'}
+                        breadcrumb2={'Grupos'}
+                        breadcrumb3={'Crear Grupo'}
+                        ruta={'/home'}
+                    />
+            <div className="content-wrapper d-flex justify-content-center ">
+                <div className="col-md-6">
+                    <form className="card" onSubmit={onSubmit}>
+                        <div className="card-body hold-transition">
+                            <div className="form-group">
+                                <label htmlFor="name">Ingrese el nombre del grupo que desee crear:</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Nombre Grupo"
                                     id="name"
                                     name="name"
                                     value={name}
@@ -89,13 +91,12 @@ const GrupoCrear = () => {
                                     required
                                 />
                             </div>
-
-                            <div className="input-group mb-3">
+                            <div className="form-group">
+                                <label htmlFor="description">Ingrese una descripcion para el grupo:</label>
                                 <textarea
                                     type="text"
-                                    rows={3}
                                     className="form-control"
-                                    placeholder="Descripcion"
+                                    rows={4}
                                     id="description"
                                     name="description"
                                     value={description}
@@ -103,21 +104,26 @@ const GrupoCrear = () => {
                                     required
                                 />
                             </div>
-
-                            <div className="social-auth-links text-center">
-                                <button type='submit' className="btn btn-block btn-primary" >
-                                    Crear Grupo
+                            <div>
+                                <small>El código de acceso para unirse a este grupo será generado automáticamente.</small>
+                            </div>
+                        </div>
+                        <div className="row justify-content-center mb-3">
+                            <div className="col-lg-3 col-6">
+                                <button type="submit" className="btn btn-block btn-primary">
+                                    Crear
                                 </button>
                             </div>
-                            <Link to={"/home"} className="btn btn-block btn-danger">
-                                Volver
-                            </Link>
-                        </form>
-
-                    </div>
+                            <div className="col-lg-3 col-6">
+                                <Link to="/home" className="btn btn-block btn-danger">
+                                    Volver
+                                </Link>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            </div>
+            <Footer />
         </div>
     );
 };

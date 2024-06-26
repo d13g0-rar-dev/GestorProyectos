@@ -5,7 +5,6 @@ import Logo from '../../node_modules/admin-lte/dist/img/logo proyecto software.p
 const SidebarContainer = () => {
 
   const storedData = localStorage.getItem('DatosUsuario');
-  console.log(storedData);
 
   const datosUsuario = JSON.parse(storedData);
   let nombreUsuario = datosUsuario.name.split(" ")[0];

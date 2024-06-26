@@ -29,7 +29,12 @@ public class Grupo {
 
     @Getter
     @Setter
-    @ManyToMany
+    @Column(name = "code")
+    private String code;
+
+    @Getter
+    @Setter
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "grupo_member",
         joinColumns = @JoinColumn(name = "grupo_id"),
@@ -40,10 +45,11 @@ public class Grupo {
     public Grupo() {
     }
 
-    public Grupo(int id, String name, String description, Set<Member> members) {
+    public Grupo(int id, String name, String description, String code, Set<Member> members) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.code = code;
         this.members = members;
     }
 }

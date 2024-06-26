@@ -3,6 +3,7 @@ package uis.entornos.taller.Controladores;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
 import java.util.List;
+
 import uis.entornos.taller.Modelos.Grupo;
 import uis.entornos.taller.Servicios.GrupoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,6 @@ public class GrupoControlador {
     public Set<Member> consultarMiembros(@PathVariable Integer id) {
         return grupoServicio.getGrupo(id).getMembers();
     }
-
 
     @PostMapping("/save")
     public ResponseEntity<Grupo> agregarGrupo(@RequestBody Grupo grupo) {

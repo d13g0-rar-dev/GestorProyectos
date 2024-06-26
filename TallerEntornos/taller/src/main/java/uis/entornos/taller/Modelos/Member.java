@@ -2,6 +2,7 @@ package uis.entornos.taller.Modelos;
 
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -70,7 +71,7 @@ public class Member {
 
   @Getter
   @Setter
-  @ManyToMany(mappedBy = "members")
+  @ManyToMany(mappedBy = "members", fetch = FetchType.LAZY)
   private Set<Grupo> grupos = new HashSet<>();
   
 

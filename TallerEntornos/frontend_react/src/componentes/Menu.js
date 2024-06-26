@@ -41,7 +41,7 @@ const Menu = () => {
               <Dropdown.Item as={Link} to="/Grupos-Crear">
                 Crear un Grupo
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to="/Unirse-Grupo">
+              <Dropdown.Item as={Link} to="/Grupos-Unirse">
                 Unirse a un Grupo
               </Dropdown.Item>
             </Dropdown.Menu>
