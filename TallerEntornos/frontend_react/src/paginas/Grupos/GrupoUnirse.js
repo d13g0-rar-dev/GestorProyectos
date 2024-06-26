@@ -5,7 +5,6 @@ import Navbar from '../../componentes/Navbar';
 import SidebarContainer from "../../componentes/SidebarContainer";
 import ContentHeader from "../../componentes/ContentHeader";
 import Footer from "../../componentes/Footer";
-import { stringify, parse } from 'flatted';
 
 const GrupoUnirse = () => {
     const [redirectLogin, setRedirectLogin] = useState(false); // Nuevo estado para la redirección
