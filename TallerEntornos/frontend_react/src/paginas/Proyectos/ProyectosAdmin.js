@@ -12,7 +12,6 @@ const ProyectosAdmin = () => {
 
     const cargarProyectos = async () => {
         const response = await APIInvoke.invokeGET('/api/members/list')
-        console.log(response);
         setProyectos(response);
     }
 

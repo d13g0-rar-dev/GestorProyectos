@@ -12,7 +12,6 @@ const TareasAdmin = () => {
 
     const cargarTareas = async () => {
         const response = await APIInvoke.invokeGET('/api/tasks/list')
-        console.log(response);
         setTareas(response);
     }
 

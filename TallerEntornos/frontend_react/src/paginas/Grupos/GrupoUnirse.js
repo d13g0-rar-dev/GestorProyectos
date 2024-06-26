@@ -1,38 +1,32 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import APIInvoke from "../../utils/APIInvoke";
 import Navbar from '../../componentes/Navbar';
 import SidebarContainer from "../../componentes/SidebarContainer";
 import ContentHeader from "../../componentes/ContentHeader";
 import Footer from "../../componentes/Footer";
-import { Navigate } from "react-router";
-import { useState } from "react";
+import { stringify, parse } from 'flatted';
 
-const GrupoUnirse = ({ groupId }) => {
-
+const GrupoUnirse = () => {
     const [redirectLogin, setRedirectLogin] = useState(false); // Nuevo estado para la redirección
 
     const unirseGrupo = async () => {
+        const storedMember = localStorage.getItem('usuario');
+        const id = document.getElementById("code").value;
+        console.log("id: ", id);
+        console.log("member: ", storedMember);
 
-        const storedMember = localStorage.getItem('DatosUsuario');
-        const member = JSON.parse(storedMember);
-        const code = document.getElementById("code").value;
-        
-        const response = await APIInvoke.invokeGET(`/api/grupos/list/code/${code}`);
+        const response = await APIInvoke.invokeGET(`/api/grupos/list/${id}`);
         console.log(response);
         const data = {
-            name: member.name,
-            email: member.email,
-            password: member.password,
-            tipo_documento: member.tipo_documento,
-            documento: member.documento,
-            telefono: member.telefono,
-            grupos: [response]
-        }
-        const response2 = await APIInvoke.invokePUT(`/api/members/update/${member.id}`, data);
-        console.log(response2);
+            id: id,
+            name: response.name,
+            description: response.description,
+            members: [storedMember],
+        };
+        const response2 = await APIInvoke.invokePUT(`/api/grupos/update/${id}`, data);
+        console.log("response: ", response2);
         setRedirectLogin(true);
-        
     };
 
     const onSubmit = (e) => {
@@ -44,21 +38,20 @@ const GrupoUnirse = ({ groupId }) => {
         document.getElementById("code").focus();
     }, []);
 
-    if(redirectLogin) {
+    if (redirectLogin) {
         return <Navigate to="/home" />;
     }
 
     return (
-      
         <div className="wrapper">
             <Navbar />
             <SidebarContainer />
             <ContentHeader
-                        Titulo={''}
-                        breadcrumb1={'Inicio'}
-                        breadcrumb2={'Crear Grupo'}
-                        ruta={'/home'}
-                    />
+                Titulo={''}
+                breadcrumb1={'Inicio'}
+                breadcrumb2={'Crear Grupo'}
+                ruta={'/home'}
+            />
             <div className="content-wrapper d-flex justify-content-center ">
                 <div className="col-md-6">
                     <form className="card" onSubmit={onSubmit}>

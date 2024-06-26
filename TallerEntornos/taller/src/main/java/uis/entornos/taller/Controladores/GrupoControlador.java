@@ -8,7 +8,6 @@ import uis.entornos.taller.Modelos.Grupo;
 import uis.entornos.taller.Servicios.GrupoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import uis.entornos.taller.Modelos.Member;
-import java.util.Set;
 
 @RestController
 @CrossOrigin("*")
@@ -28,33 +27,25 @@ public class GrupoControlador {
     }
 
     @GetMapping("/list/{id}/members")
-    public Set<Member> consultarMiembros(@PathVariable Integer id) {
+    public List<Member> consultarMiembros(@PathVariable Integer id) {
         return grupoServicio.getGrupo(id).getMembers();
     }
 
     @PostMapping("/save")
     public ResponseEntity<Grupo> agregarGrupo(@RequestBody Grupo grupo) {
-        Grupo grupoNuevo = grupoServicio.saveGrupo(grupo);
-        if (grupoNuevo == null) {
-            return new ResponseEntity<>(grupoNuevo, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Grupo grupoNuevo = grupoServicio.crearGrupo(grupo);
         return new ResponseEntity<>(grupoNuevo,HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Grupo> editarGrupo(@RequestBody Grupo grupo){
-        Grupo grupoEditado = grupoServicio.getGrupo(grupo.getId());
+    public ResponseEntity<Grupo> editarGrupo(@PathVariable int id, @RequestBody Grupo grupo){
+        grupo.setId(id);
+        Grupo grupoEditado = grupoServicio.actualizarGrupo(grupo);
         if (grupoEditado != null) {
-            grupoEditado.setId(grupo.getId());
-            grupoEditado.setName(grupo.getName());
-            grupoEditado.setDescription(grupo.getDescription());
-            grupoEditado.setMembers(grupo.getMembers());
-
-            grupoServicio.saveGrupo(grupoEditado);
+            return new ResponseEntity<>(grupoEditado,HttpStatus.OK);
         }else{
             return new ResponseEntity<>(grupoEditado, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(grupoEditado,HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

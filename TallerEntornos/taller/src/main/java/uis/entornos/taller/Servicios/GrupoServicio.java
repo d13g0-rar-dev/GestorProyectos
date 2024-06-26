@@ -1,5 +1,6 @@
 package uis.entornos.taller.Servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,29 @@ public class GrupoServicio implements IGrupoServicio{
 
     @Override
     @SuppressWarnings("null")
+    @Transactional
+    public Grupo crearGrupo(Grupo grupo) {
+        return grupoRepo.save(grupo);
+    }
+
+    @Override
+    @SuppressWarnings("null")
+    public Grupo actualizarGrupo(Grupo grupo) {
+        Grupo grupoExistente = grupoRepo.findById(grupo.getId()).orElse(null);
+        grupoExistente.setName(grupo.getName());
+        grupoExistente.setDescription(grupo.getDescription());
+    
+        List<Member> members = new ArrayList<>();
+        for (Member member : grupo.getMembers()) {
+            Member memberExistente = memberRepo.findById(member.getId()).orElse(null);
+            members.add(memberExistente);
+        }
+        grupoExistente.setMembers(members);
+        return grupoRepo.save(grupoExistente);
+    }
+
+    @Override
+    @SuppressWarnings("null")
     public List<Grupo> getGrupos() {
         return grupoRepo.findAll();
     }
@@ -34,26 +58,18 @@ public class GrupoServicio implements IGrupoServicio{
 
     @Override
     @SuppressWarnings("null")
-    public Grupo saveGrupo(Grupo grupo) {
-        return grupoRepo.save(grupo);
-    }
-
-    @Override
-    @SuppressWarnings("null")
     public void deleteGrupo(Integer id) {
         grupoRepo.deleteById(id);
     }
 
-    public void unirseGrupo(int userId, int groupId) {
-        Member member = memberRepo.findById(userId).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        Grupo grupo = grupoRepo.findById(groupId).orElseThrow(() -> new RuntimeException("Grupo no encontrado"));
-
-        grupo.getMembers().add(member);
-        grupoRepo.save(grupo);
+    @Override
+    @SuppressWarnings("null")
+    public void addMember(Integer id, Integer memberId) {
+        Grupo grupo = grupoRepo.findById(id).orElse(null);
+        Member member = memberRepo.findById(memberId).orElse(null);
+        if (grupo != null && member != null) {
+            grupo.getMembers().add(member);
+            grupoRepo.save(grupo);
+        }
     }
-
-    public Grupo findByCode(String code) {
-        return grupoRepo.findByCode(code);
-    }
-
 }

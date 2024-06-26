@@ -2,8 +2,9 @@ package uis.entornos.taller.Modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+
 
 @Entity
 @Table(name = "grupo")
@@ -14,7 +15,6 @@ public class Grupo {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Getter
@@ -29,27 +29,20 @@ public class Grupo {
 
     @Getter
     @Setter
-    @Column(name = "code")
-    private String code;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "grupo_member",
+            joinColumns = @JoinColumn(name = "grupo_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id"))
+    private List<Member> members = new ArrayList<>();
 
-    @Getter
-    @Setter
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "grupo_member",
-        joinColumns = @JoinColumn(name = "grupo_id"),
-        inverseJoinColumns = @JoinColumn(name = "member_id")
-    )
-    private Set<Member> members = new HashSet<>();
 
     public Grupo() {
     }
 
-    public Grupo(int id, String name, String description, String code, Set<Member> members) {
+    public Grupo(int id, String name, String description, List<Member> members) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.code = code;
         this.members = members;
     }
 }

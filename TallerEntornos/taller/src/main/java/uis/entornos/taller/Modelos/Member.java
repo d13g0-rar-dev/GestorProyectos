@@ -1,19 +1,9 @@
 package uis.entornos.taller.Modelos;
 
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.util.Set;
-import java.util.HashSet;
-import jakarta.persistence.Column;
-import lombok.Getter;
-import lombok.Setter;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -71,11 +61,12 @@ public class Member {
 
   @Getter
   @Setter
-  @ManyToMany(mappedBy = "members", fetch = FetchType.LAZY)
-  private Set<Grupo> grupos = new HashSet<>();
-  
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  private List<Grupo> grupos = new ArrayList<>();
 
-  public Member(int id, String name, String email, String password, long documento, String tipo_documento, long telefono ,Role role, Task task, Set<Grupo> grupos) {
+
+
+  public Member(int id, String name, String email, String password, long documento, String tipo_documento, long telefono ,Role role, Task task, List<Grupo> grupos) {
       this.id = id;
       this.name = name;
       this.email = email;

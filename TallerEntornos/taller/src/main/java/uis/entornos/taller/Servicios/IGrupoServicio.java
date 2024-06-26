@@ -4,7 +4,9 @@ import uis.entornos.taller.Modelos.Grupo;
 
 public interface IGrupoServicio {
     public List<Grupo> getGrupos();
+    public Grupo crearGrupo(Grupo grupo);
+    public Grupo actualizarGrupo(Grupo grupo);
     public Grupo getGrupo(Integer id);
-    public Grupo saveGrupo(Grupo grupo);
     public void deleteGrupo(Integer id);
+    public void addMember(Integer id, Integer memberId);
 }

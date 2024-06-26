@@ -8,7 +8,6 @@ import Footer from "../../componentes/Footer";
 
 const GrupoCrear = () => {
 
-    localStorage.setItem('usuario', JSON.parse(localStorage.getItem('DatosUsuario')));
     const [Grupo, setGrupo] = useState({
         name: '',
         description: '',
@@ -25,29 +24,17 @@ const GrupoCrear = () => {
     const crearGrupo = async () => {
         const storedMember = localStorage.getItem('DatosUsuario');
         const member = JSON.parse(storedMember);
-
-        const code = Math.floor(Math.random() * 1000000);
+        const id = Math.floor(Math.random() * 1000000);
 
         const data = {
+            id: id,
             name: Grupo.name,
             description: Grupo.description,
-            code: code,
             members: [member]
         }
         const response = await APIInvoke.invokePOST(`/api/grupos/save`, data);
-        console.log(response);
-        const data2 = {
-            name: member.name,
-            email: member.email,
-            password: member.password,
-            tipo_documento: member.tipo_documento,
-            documento: member.documento,
-            telefono: member.telefono,
-            grupos: [response.data]
-        }
-        const response2 = await APIInvoke.invokePUT(`/api/members/update/${member.id}`, data2);
-        console.log(response2);
         setRedirectLogin(true);
+
     }
 
     const onSubmit = (e) => {

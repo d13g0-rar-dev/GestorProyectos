@@ -33,12 +33,14 @@ public class MemberControlador {
   }
 
   @PutMapping("/update/{id}")
-  public ResponseEntity<Member> editarMember(@RequestBody Member member){
+  public ResponseEntity<Member> editarMember(@PathVariable("id") int id, @RequestBody Member member){
     Member memberEditado = memberServicio.getMember(member.getId());
     if (memberEditado != null) {
       memberEditado.setId(member.getId());
       memberEditado.setName(member.getName());
       memberEditado.setEmail(member.getEmail());
+      memberEditado.setTipo_documento(member.getTipo_documento());
+      memberEditado.setDocumento(member.getDocumento());
       memberEditado.setPassword(member.getPassword());
       memberEditado.setTelefono(member.getTelefono());
       memberEditado.setRole(member.getRole());
