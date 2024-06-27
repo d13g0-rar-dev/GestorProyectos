@@ -64,8 +64,29 @@ const GrupoInfo = () => {
                                                     <div className='card-header'>
                                                         <h5 className='card-title'>{tarea.name}</h5>
                                                         <div className="card-tools">
-                                                            <a href="#" className="btn btn-tool btn-link"><i className="fas fa-info"></i></a>
-                                                            <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}@${tarea.status}/`} className='btn btn-sm btn-primary'><i className='fas fa-pen'></i></Link>
+                                                            <a href="#" className="btn btn-tool btn-link" data-toggle="modal" data-target="#modal-info-pendiente"><i className="fas fa-info"></i></a>
+                                                            <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}@${tarea.status}@${idGrupo}/`} className='btn btn-sm btn-primary'><i className='fas fa-pen'></i></Link>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal fade" id="modal-info-pendiente">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content bg-primary">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">{tarea.name}</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>{tarea.description}</p>
+                                                                    <p>Fecha de Inicio: {tarea.date.split('T')[0]}</p>
+                                                                    <p>Fecha de Cierre: {tarea.deadline.split('T')[0]}</p>
+                                                                    <p>Estado de la Tarea: {tarea.status}</p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-between">
+                                                                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </>
@@ -79,11 +100,11 @@ const GrupoInfo = () => {
                             <div className="card card-row card-default">
                                 <div className="card-header bg-info">
                                     <h3 className="card-title">
-                                        On Progress
+                                        En Curso
                                     </h3>
                                 </div>
                                 <div className="card-body">
-                                    <div className="card card-primary card-outline">
+                                    <div className="card card-info card-outline">
                                     {
                                             
                                         tareasProgreso.map(tarea => 
@@ -91,14 +112,36 @@ const GrupoInfo = () => {
                                                 <div className='card-header'>
                                                     <h5 className='card-title'>{tarea.name}</h5>
                                                     <div className="card-tools">
-                                                        <a href="#" className="btn btn-tool btn-link"><i className="fas fa-info"></i></a>
-                                                        <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}/`} className='btn btn-sm btn-primary'></Link>
+                                                        <a href="#" className="btn btn-tool btn-link" data-toggle="modal" data-target="#modal-info-progreso"><i className="fas fa-info"></i></a>
+                                                        <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}@${tarea.status}@${idGrupo}/`} className='btn btn-sm btn-primary'><i className='fas fa-pen'></i></Link>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade" id="modal-info-progreso">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content bg-info">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">{tarea.name}</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>{tarea.description}</p>
+                                                                <p>Fecha de Inicio: {tarea.date.split('T')[0]}</p>
+                                                                <p>Fecha de Cierre: {tarea.deadline.split('T')[0]}</p>
+                                                                <p>Estado de la Tarea: {tarea.status}</p>
+                                                            </div>
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </>
                                         )                                            
                                     }
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -106,20 +149,41 @@ const GrupoInfo = () => {
                             <div className="card card-row card-success">
                                 <div className="card-header">
                                     <h3 className="card-title">
-                                        Done
+                                        Finalizada
                                     </h3>
                                 </div>
                                 <div className="card-body">
-                                    <div className="card card-primary card-outline">
+                                    <div className="card card-success card-outline">
                                     {
                                         tareasFinalizadas.map(tarea => 
                                             <>
                                                 <div className='card-header'>
                                                     <h5 className='card-title'>{tarea.name}</h5>
                                                     <div className="card-tools">
-                                                        <a href="#" className="btn btn-tool btn-link"><i className="fas fa-info"></i></a>
-                                                        <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}/`} className='btn btn-sm btn-primary'></Link>
+                                                        <a href="#" className="btn btn-tool btn-link" data-toggle="modal" data-target="#modal-info-finalizada"><i className="fas fa-info"></i></a>
+                                                        <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}@${tarea.status}@${idGrupo}/`} className='btn btn-sm btn-primary'><i className='fas fa-pen'></i></Link>
                                                     </div>
+                                                    <div class="modal fade" id="modal-info-finalizada">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content bg-success">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">{tarea.name}</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>{tarea.description}</p>
+                                                                    <p>Fecha de Inicio: {tarea.date.split('T')[0]}</p>
+                                                                    <p>Fecha de Cierre: {tarea.deadline.split('T')[0]}</p>
+                                                                    <p>Estado de la Tarea: {tarea.status}</p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-between">
+                                                                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
                                                 </div>
                                             </>
                                         )                                            

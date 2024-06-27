@@ -16,16 +16,18 @@ const TareasEditar = () => {
     const descriptionUs = array[2];
     const dateUs = array[3];
     const deadlineUs = array[4];
-    console.log("idTarea: ", idTarea)
+    const statusUs = array[5];
+    const idGrupo = array[6];
 
     const [tareas, setTareas] = useState({
         name: nameUs,
         description: descriptionUs,
         date: dateUs,
         deadline: deadlineUs,
+        status: statusUs
     });
 
-    const { name, description, date, deadline } = tareas;
+    const { name, description, date, deadline, status } = tareas;
 
     useEffect(() => {
         document.getElementById("name").focus();
@@ -49,13 +51,11 @@ const TareasEditar = () => {
             description: tareas.description,
             date: tareas.date,
             deadline: tareas.deadline,
+            status: tareas.status
         }
 
         const response = await APIInvoke.invokePUT(`/api/tasks/update/${idTarea}`, data);
         const idTareaEditada = response.id;
-        console.log("response: ", response);
-        console.log("idTareaEditada: ", idTareaEditada);
-        console.log("idTarea: ", idTarea);
 
         if (idTareaEditada != idTarea) {
             const msg = "No fue posible Actualizar el usuario";
@@ -74,7 +74,7 @@ const TareasEditar = () => {
                 }
             });
         } else {
-            navigate('/Tareas-Admin')
+            navigate(`/grupos/${idGrupo}`)
             const msg = "Actualizacion Exitosa";
             swal({
                 title: 'OK',
@@ -114,6 +114,7 @@ const TareasEditar = () => {
                                     value={name}
                                     onChange={onChange}
                                     required
+                                    disabled
                                 />
                             </div>
 
@@ -156,12 +157,25 @@ const TareasEditar = () => {
                                 />
                             </div>
 
+                            <div className="input-group mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Estado de la Tarea"
+                                    id="status"
+                                    name="status"
+                                    value={status}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+
                             <div className="social-auth-links text-center">
                                 <button type='submit' className="btn btn-block btn-primary">
                                     Actualizar
                                 </button>
                             </div>
-                            <Link to={"/Tareas-Admin"} className="btn btn-block btn-danger">
+                            <Link to={`/grupos/${idGrupo}`} className="btn btn-block btn-danger">
                                 Volver
                             </Link>
                         </form>

@@ -38,7 +38,7 @@ const TareasRegistro = () => {
             deadline: Tarea.deadline.split('T')[0],
             status: Tarea.status,
         }
-        const response = await APIInvoke.invokePOST(`/api/tasks/save`,data);
+        
         await APIInvoke.invokePUT(`/api/grupos/add/${idGrupo}/task`,data);
         setRedirectLogin(true);
     }
