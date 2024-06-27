@@ -146,6 +146,7 @@ const Login = () => {
               <div className="social-auth-links text-center mb-3">
                 <button type='submit' className="btn btn-block btn-primary"> Ingresar</button>
                 <Link to={"/Registro"} className="btn btn-block btn-danger">Registrarse</Link>
+                <Link to={"/Recuperacion"} className="">Recuperar Contraseña</Link>
               </div>
             </form>
             

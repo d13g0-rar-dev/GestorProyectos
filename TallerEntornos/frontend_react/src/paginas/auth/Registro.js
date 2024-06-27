@@ -175,7 +175,7 @@ const Registro = () => {
                 </button>
               </div>
               <Link to={"/"} className="btn btn-block btn-danger">
-                Registrado
+                Iniciar Sesion
               </Link>
             </form>
             

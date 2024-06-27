@@ -12,6 +12,7 @@ import GrupoCrear from "./paginas/Grupos/GrupoCrear";
 import TareasRegistro from "./paginas/Tareas/TareasRegistro";
 import GrupoUnirse from "./paginas/Grupos/GrupoUnirse";
 import GrupoInfo from "./paginas/Grupos/GrupoInfo";
+import Recuperacion from "./paginas/auth/Recuperacion";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Grupos-Crear" exact element={<GrupoCrear/>}/>
           <Route path="/Grupos-Unirse" exact element={<GrupoUnirse/>}/>
           <Route path="/Grupos/:idgrupo" exact element={<GrupoInfo/>}/>
+          <Route path="/Recuperacion" exact element={<Recuperacion/>}/>
         </Routes>
       </Router>
     </Fragment>/* actua como un div */
