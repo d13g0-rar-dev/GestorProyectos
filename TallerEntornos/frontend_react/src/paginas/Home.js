@@ -12,9 +12,9 @@ const Home = () => {
          <SidebarContainer></SidebarContainer>
          <div className="content-wrapper">
             <ContentHeader
-               Titulo={'Dashboard'}
+               Titulo={'Grupos'}
                breadcrumb1={'Inicio'}
-               breadcrumb2={'Dashboard'}
+               breadcrumb2={'Grupos'}
                ruta={'/home'}
             />
          <GruposAdmin></GruposAdmin>
