@@ -65,7 +65,7 @@ const GrupoInfo = () => {
                                                         <h5 className='card-title'>{tarea.name}</h5>
                                                         <div className="card-tools">
                                                             <a href="#" className="btn btn-tool btn-link"><i className="fas fa-info"></i></a>
-                                                            <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}/`} className='btn btn-sm btn-primary'><i className='fas fa-pen'></i></Link>
+                                                            <Link to={`/Tareas-editar/${tarea.id}@${tarea.name}@${tarea.description}@${tarea.date.split('T')[0]}@${tarea.deadline.split('T')[0]}@${tarea.status}/`} className='btn btn-sm btn-primary'><i className='fas fa-pen'></i></Link>
                                                         </div>
                                                     </div>
                                                 </>
