@@ -119,7 +119,7 @@ const GrupoInfo = () => {
                                                 }
                                             </div>
                                         </div>
-                                        <h5><Link to={'/Tareas-Registro'}><i className='fas fa-code'/>Crear Tarea</Link></h5>
+                                        <h5><Link to={`/Tareas-Registro/${idGrupo}@`}><i className='fas fa-code'/>Crear Tarea</Link></h5>
                                         <h5><Link to={'/home'}><i className='fas fa-code'/>Subir Documento</Link></h5>
                                         <h5><Link to={'/home'}><i className='fas fa-code'/>Regresar</Link></h5>
                                         

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uis.entornos.taller.Modelos.Grupo;
 import uis.entornos.taller.Modelos.Member;
+import uis.entornos.taller.Modelos.Task;
 import uis.entornos.taller.Repositorios.GrupoRepositorio;
 import uis.entornos.taller.Repositorios.MemberRepositorio;
 
@@ -57,6 +58,16 @@ public class GrupoServicio implements IGrupoServicio{
         Member member = memberRepo.findById(memberId).orElse(null);
         if (grupo != null && member != null) {
             grupo.getMembers().add(member);
+            grupoRepo.save(grupo);
+        }
+    }
+
+    @Override
+    @SuppressWarnings("null")
+    public void addTask(Integer id, Task task) {
+        Grupo grupo = grupoRepo.findById(id).orElse(null);
+        if (grupo != null) {
+            grupo.getTasks().add(task);
             grupoRepo.save(grupo);
         }
     }

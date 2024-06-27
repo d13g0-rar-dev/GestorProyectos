@@ -35,14 +35,19 @@ public class Grupo {
             inverseJoinColumns = @JoinColumn(name = "member_id"))
     private List<Member> members = new ArrayList<>();
 
+    @Getter
+    @Setter
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Task> tasks = new ArrayList<>();
 
     public Grupo() {
     }
 
-    public Grupo(int id, String name, String description, List<Member> members) {
+    public Grupo(int id, String name, String description, List<Member> members, List<Task> tasks) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.members = members;
+        this.tasks = tasks;
     }
 }

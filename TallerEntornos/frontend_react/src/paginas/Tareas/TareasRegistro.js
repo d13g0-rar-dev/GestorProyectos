@@ -1,17 +1,26 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import APIInvoke from '../../utils/APIInvoke';
 
 const TareasRegistro = () => {
+
+    const navigate = useNavigate()
+    const {idgrupo} = useParams();
+
+    let arreglo = idgrupo.split('@');
+    const idGrupo = arreglo[0];
+
     const [Tarea, setTarea] = useState({
         name : '',
         description : '',
         date : '',
         deadline : '',
+        status : 'Pendiente',
+        grupo_id : idGrupo
     })
 
-    const {name,description,date,deadline} = Tarea;
+    const {name,description,date,deadline,status,grupo_id} = Tarea;
 
     const onChange = (e) =>{
         setTarea(e.target.value);
@@ -27,9 +36,10 @@ const TareasRegistro = () => {
             description: Tarea.description,
             date: Tarea.date.split('T')[0],
             deadline: Tarea.deadline.split('T')[0],
+            status: Tarea.status,
         }
         const response = await APIInvoke.invokePOST(`/api/tasks/save`,data);
-        console.log(response);
+        await APIInvoke.invokePUT(`/api/grupos/add/${idGrupo}/task`,data);
         setRedirectLogin(true);
     }
 
@@ -43,7 +53,7 @@ const TareasRegistro = () => {
     }, [])
 
     if (redirectLogin) {
-        return <Navigate to="/Tareas-Admin" />;
+        return <Navigate to={`/grupos/${idGrupo}`}/>;
     }
 
     return(

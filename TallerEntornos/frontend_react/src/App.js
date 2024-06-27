@@ -27,7 +27,7 @@ function App() {
           <Route path="/Proyectos-editar/:idproyecto" exact element={<ProyectosEditar/>}/>
           <Route path="/Tareas-Admin" exact element={<TareasAdmin/>}/>
           <Route path="/Tareas-editar/:idtarea" exact element={<TareasEditar/>}/>
-          <Route path="/Tareas-Registro" exact element={<TareasRegistro/>}/>
+          <Route path="/Tareas-Registro/:idgrupo" exact element={<TareasRegistro/>}/>
           <Route path="/Grupos-Crear" exact element={<GrupoCrear/>}/>
           <Route path="/Grupos-Unirse" exact element={<GrupoUnirse/>}/>
           <Route path="/Grupos/:idgrupo" exact element={<GrupoInfo/>}/>

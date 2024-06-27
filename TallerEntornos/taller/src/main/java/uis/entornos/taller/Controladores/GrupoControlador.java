@@ -3,11 +3,11 @@ package uis.entornos.taller.Controladores;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
 import java.util.List;
-
 import uis.entornos.taller.Modelos.Grupo;
 import uis.entornos.taller.Servicios.GrupoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import uis.entornos.taller.Modelos.Member;
+import uis.entornos.taller.Modelos.Task;
 
 @RestController
 @CrossOrigin("*")
@@ -29,6 +29,17 @@ public class GrupoControlador {
     @GetMapping("/list/{id}/members")
     public List<Member> consultarMiembros(@PathVariable Integer id) {
         return grupoServicio.getGrupo(id).getMembers();
+    }
+
+    @GetMapping("/list/{id}/tasks")
+    public List<Task> consultarTareas(@PathVariable Integer id) {
+        return grupoServicio.getGrupo(id).getTasks();
+    }
+
+    @PutMapping("/add/{idGrupo}/task")
+    public ResponseEntity<Grupo> agregarTarea (@PathVariable Integer idGrupo, @RequestBody Task task){
+        grupoServicio.addTask(idGrupo, task);
+        return new ResponseEntity<>(grupoServicio.getGrupo(idGrupo),HttpStatus.OK);
     }
 
     @PostMapping("/save")
