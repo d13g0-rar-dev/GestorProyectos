@@ -3,6 +3,7 @@ package uis.entornos.taller.Controladores;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
 import java.util.List;
+import uis.entornos.taller.Modelos.Document;
 import uis.entornos.taller.Modelos.Grupo;
 import uis.entornos.taller.Servicios.GrupoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,17 @@ public class GrupoControlador {
     @GetMapping("/list/{id}/tasks")
     public List<Task> consultarTareas(@PathVariable Integer id) {
         return grupoServicio.getGrupo(id).getTasks();
+    }
+
+    @GetMapping("/list/{id}/documents")
+    public List<Document> consultarDocumentos(@PathVariable Integer id) {
+        return grupoServicio.getGrupo(id).getDocuments();
+    }
+
+    @PutMapping("/add/{idGrupo}/document")
+    public ResponseEntity<Grupo> agregarDocumento (@PathVariable Integer idGrupo, @RequestBody Document document){
+        grupoServicio.addDocument(idGrupo, document);
+        return new ResponseEntity<>(grupoServicio.getGrupo(idGrupo),HttpStatus.OK);
     }
 
     @PutMapping("/add/{idGrupo}/task")

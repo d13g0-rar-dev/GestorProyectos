@@ -15,4 +15,5 @@ public interface GrupoRepositorio extends JpaRepository<Grupo, Integer> {
     
         @Query("select u from Grupo as u where u.name = :name")
         Grupo findByName(@Param("name") String name);
+
 }

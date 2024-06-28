@@ -1,7 +1,6 @@
 package uis.entornos.taller.Servicios;
 import java.util.List;
-import uis.entornos.taller.Modelos.Grupo;
-import uis.entornos.taller.Modelos.Task;
+import uis.entornos.taller.Modelos.*;
 
 public interface IGrupoServicio {
     public List<Grupo> getGrupos();
@@ -11,4 +10,5 @@ public interface IGrupoServicio {
     public void deleteGrupo(Integer id);
     public void addMember(Integer id, Integer memberId);
     public void addTask(Integer id, Task task);
+    public void addDocument(Integer id, Document document);
 }

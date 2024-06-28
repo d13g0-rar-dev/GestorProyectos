@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import uis.entornos.taller.Modelos.Document;
 import uis.entornos.taller.Modelos.Grupo;
 import uis.entornos.taller.Modelos.Member;
 import uis.entornos.taller.Modelos.Task;
@@ -68,6 +70,16 @@ public class GrupoServicio implements IGrupoServicio{
         Grupo grupo = grupoRepo.findById(id).orElse(null);
         if (grupo != null) {
             grupo.getTasks().add(task);
+            grupoRepo.save(grupo);
+        }
+    }
+
+    @Override
+    @SuppressWarnings("null")
+    public void addDocument(Integer id, Document document) {
+        Grupo grupo = grupoRepo.findById(id).orElse(null);
+        if (grupo != null) {
+            grupo.getDocuments().add(document);
             grupoRepo.save(grupo);
         }
     }

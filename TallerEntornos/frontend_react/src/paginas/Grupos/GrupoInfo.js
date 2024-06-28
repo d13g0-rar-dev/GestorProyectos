@@ -8,6 +8,7 @@ import APIInvoke from '../../utils/APIInvoke';
 import axios from 'axios';
 import { uploadFile } from '../../firebaseService';
 import SubirDocumentos from '../Documentos/SubirDocumentos';
+import ListarDocumentos from '../Documentos/ListarDocumentos';
 
 const GrupoInfo = () => {
 
@@ -230,11 +231,13 @@ const GrupoInfo = () => {
                                     <h5><Link to={`/Tareas-Registro/${idGrupo}@`}><i className='fas fa-code' />Crear Tarea</Link></h5>
                                     <SubirDocumentos idGrupo={idGrupo}></SubirDocumentos>
                                     <h5><Link to={'/home'}><i className='fas fa-code' />Regresar</Link></h5>
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <ListarDocumentos idGrupo={idGrupo}></ListarDocumentos>
                 </div>
             </section>
         </div><Footer></Footer>

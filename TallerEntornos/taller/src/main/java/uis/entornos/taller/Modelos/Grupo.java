@@ -3,6 +3,9 @@ package uis.entornos.taller.Modelos;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 
@@ -42,7 +45,8 @@ public class Grupo {
 
     @Getter
     @Setter
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Document> documents = new ArrayList<>();
 
     public Grupo() {
