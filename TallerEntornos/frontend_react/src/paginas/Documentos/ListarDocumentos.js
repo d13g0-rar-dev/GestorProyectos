@@ -26,15 +26,24 @@ const ListarDocumentos = ({ idGrupo }) => {
     }, [idGrupo]);
 
     return (
-        <div>
-            <h3>Documents for Group {idGrupo}</h3>
-            <ul>
-                {documentos.map((doc) => (
-                    <li key={doc.id}>
-                        <a href={doc.fileUrl} target="_blank" rel="noreferrer">{doc.name}</a>
-                    </li>
-                ))}
-            </ul>
+        <div className='col-md-6'>
+            <div className='card'>
+                <div className='card-header'>
+                    <h3 className='card-title'><i className='fas fa-file'></i> Documentos del Grupo {idGrupo}</h3>
+                </div>
+                <div className='card-body'>
+                <p>Click en el archivo que desees descargar.</p>
+                <ul>
+                    {documentos.map((doc) => (
+                        <li key={doc.id}>
+                            <a href={doc.fileUrl} target="_blank" rel="noreferrer">{doc.name}</a>
+                        </li>
+                    ))}
+                </ul>
+                </div>
+                
+            </div>
+            
         </div>
     );
 };
