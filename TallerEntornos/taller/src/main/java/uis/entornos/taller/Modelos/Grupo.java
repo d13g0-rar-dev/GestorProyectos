@@ -40,14 +40,20 @@ public class Grupo {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
+    @Getter
+    @Setter
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Document> documents = new ArrayList<>();
+
     public Grupo() {
     }
 
-    public Grupo(int id, String name, String description, List<Member> members, List<Task> tasks) {
+    public Grupo(int id, String name, String description, List<Member> members, List<Task> tasks, List<Document> documents) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.members = members;
         this.tasks = tasks;
+        this.documents = documents;
     }
 }

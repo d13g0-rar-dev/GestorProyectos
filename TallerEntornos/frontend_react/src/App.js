@@ -13,6 +13,7 @@ import TareasRegistro from "./paginas/Tareas/TareasRegistro";
 import GrupoUnirse from "./paginas/Grupos/GrupoUnirse";
 import GrupoInfo from "./paginas/Grupos/GrupoInfo";
 import Recuperacion from "./paginas/auth/Recuperacion";
+import SubirDocumentos from "./paginas/Documentos/SubirDocumentos";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/Grupos-Unirse" exact element={<GrupoUnirse/>}/>
           <Route path="/Grupos/:idgrupo" exact element={<GrupoInfo/>}/>
           <Route path="/Recuperacion" exact element={<Recuperacion/>}/>
+          <Route path="/SubirDocumentos" exact element={<SubirDocumentos/>}/>
         </Routes>
       </Router>
     </Fragment>/* actua como un div */
