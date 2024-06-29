@@ -9,6 +9,7 @@ import axios from 'axios';
 import { uploadFile } from '../../firebaseService';
 import SubirDocumentos from '../Documentos/SubirDocumentos';
 import ListarDocumentos from '../Documentos/ListarDocumentos';
+import Chat from '../Chats/Chat';
 
 const GrupoInfo = () => {
 
@@ -238,6 +239,9 @@ const GrupoInfo = () => {
                 </div>
                 <div>
                     <ListarDocumentos idGrupo={idGrupo}></ListarDocumentos>
+                </div>
+                <div>
+                    <Chat idGrupo={idGrupo}></Chat>
                 </div>
             </section>
         </div><Footer></Footer>

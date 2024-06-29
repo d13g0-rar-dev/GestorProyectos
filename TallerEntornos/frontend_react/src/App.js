@@ -15,6 +15,7 @@ import GrupoInfo from "./paginas/Grupos/GrupoInfo";
 import Recuperacion from "./paginas/auth/Recuperacion";
 import SubirDocumentos from "./paginas/Documentos/SubirDocumentos";
 import ListarDocumentos from "./paginas/Documentos/ListarDocumentos";
+import Chat from "./paginas/Chats/Chat";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/Recuperacion" exact element={<Recuperacion/>}/>
           <Route path="/SubirDocumentos" exact element={<SubirDocumentos/>}/>
           <Route path="/ListarDocumentos" exact element={<ListarDocumentos/>}/>
+          <Route path="/Chat/:idgrupo" exact element={<Chat/>}/>
         </Routes>
       </Router>
     </Fragment>/* actua como un div */
