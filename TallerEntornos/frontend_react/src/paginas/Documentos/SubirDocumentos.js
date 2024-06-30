@@ -20,7 +20,7 @@ const SubirDocumentos = ({idGrupo}) => {
             const fileUrl = await uploadFile(file);
             console.log(file);
             console.log(fileUrl);
-            const response = await axios.post(`http://localhost:8080/api/documents/update/${idGrupo}`, {fileUrl, name:file.name});
+            const response = await axios.post(`https://worldwideworks-3dbca.web.app/api/documents/update/${idGrupo}`, {fileUrl, name:file.name});
             console.log(response);
             setMessage('Archivo subido correctamente');
         } catch (error) {
