@@ -1,6 +1,6 @@
 import React from "react";
 import Menu from "./Menu";
-import Logo from '../../node_modules/admin-lte/dist/img/logo proyecto software.png';
+import Logo from '../../node_modules/admin-lte/dist/img/AdminLTELogo.png';
 
 const SidebarContainer = () => {
 
