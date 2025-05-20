@@ -67,3 +67,8 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# docker files
+docker-compose.override.yml
+docker-compose.override.yaml
+Dockerfile
