@@ -72,3 +72,4 @@ node_modules/
 docker-compose.override.yml
 docker-compose.override.yaml
 Dockerfile
+docker-compose.yml
